@@ -13,6 +13,7 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
+    # to make get link of the product according to the category
     def get_url(self):
         return reverse('product_by_category', args=[self.slug])
  
