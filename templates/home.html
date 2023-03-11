@@ -19,7 +19,7 @@
 <div class="container">
 
 <header class="section-heading">
-	<a href="./store.html" class="btn btn-outline-success float-right">See all</a>
+	<a href="{% url 'store' %}" class="btn btn-outline-success float-right">See all</a>
 	<h3 class="section-title">Popular products</h3>
 </header><!-- sect-heading -->
 
@@ -29,9 +29,9 @@
 		<div class="col-md-3">
 			<div class="card card-product-grid">
 				<!-- url chiancha so belwo .url is necessary as it will reutrn the link of the image not the actual image file -->
-				<a href="./product-detail.html" class="img-wrap"> <img src="{{ product.Image.url }}"></a>
+				<a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a>
 				<figcaption class="info-wrap">
-					<a href="./product-detail.html" class="title">{{ product.product_name }}</a>
+					<a href="{{product.get_url}}" class="title">{{ product.product_name }}</a>
 					<div class="price mt-1">	Rs.{{ product.price }}</div> <!-- price-wrap.// -->
 				</figcaption>
 			</div>
