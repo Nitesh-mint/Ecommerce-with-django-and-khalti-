@@ -63,6 +63,9 @@ def cart(request, total=0, quantity=0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
+
+            # if quantity > Product.stock:
+            #     exit
         tax = (2* total) / 100
         grand_total = total + tax
     except ObjectDoesNotExist:
