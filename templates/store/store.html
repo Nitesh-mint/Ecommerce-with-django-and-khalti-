@@ -5,9 +5,13 @@
         
     <!-- ========================= SECTION PAGETOP ========================= -->
     <section class="section-pagetop bg">
+        {% if products %}
         <div class="container">
-            <h2 class="title-page">Our Store</h2>
-            
+            {% if 'search' in request.path %}
+                <h2 class="title-page">Search Result</h2>
+            {% else  %}
+                <h2 class="title-page">Our Store</h2>
+            {% endif %}
         </div> <!-- container //  -->
         </section>
         <!-- ========================= SECTION INTRO END// ========================= -->
@@ -186,7 +190,12 @@
         </div>
         
         </div> <!-- container .//  -->
-        </section>
+    {% else %}
+        <div class="container">
+            <h2 class="text-center">No results</h2>
+        </div>
+    {% endif %}
+    </section>
         <!-- ========================= SECTION CONTENT END// ========================= -->
     
 {% endblock content %}
