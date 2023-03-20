@@ -151,8 +151,7 @@
                                 {% else %}
                                     {% if product.stock < 1 %} 
                                         <center>
-                                            <span class="fs-1 text-danger">Out of stock</span><br>
-                                            <a href="{{ product.get_url }}" class="btn btn-block btn-outline-success float-end">View Details</a>
+                                            <h4 class="text-danger">Out of stock</h4><br>
                                         </center>
                                     {% else %}
                                         <a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-primary">Add to cart </a>
