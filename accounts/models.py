@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-class MyAccoutnManager(BaseUserManager):
+class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password=None):
         if not email:
             raise ValueError("User must have an email address")
@@ -42,6 +42,7 @@ class Account(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     email  = models.EmailField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, blank=True)
 
     #required 
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -58,7 +59,7 @@ class Account(AbstractBaseUser):
         return self.email
     
 
-    object = MyAccoutnManager() #informing this class about the above class
+    object = MyAccountManager() #informing this class about the above class
 
     #this is for superadmin and admin roles
     def has_perm(self, perm, obj=None):
