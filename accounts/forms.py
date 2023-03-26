@@ -2,7 +2,7 @@ from django import forms
 from .models import Account
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
+    password = forms.CharField(widget=forms.PasswordInput(attrs={ #attrs in for the css class
         'placeholder': "Enter a password",
         'class': 'form-control'
     }))
