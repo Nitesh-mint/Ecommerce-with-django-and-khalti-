@@ -5,10 +5,8 @@ from .models import Account
 
 def registration(request):
     if request.method == 'POST':
-        print("Inside firs if ")
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            print("inside second if")
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']

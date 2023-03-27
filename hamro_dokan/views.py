@@ -7,6 +7,7 @@ from carts.views import _cart_id
 
 def home(request):
     products = Product.objects.all().filter(is_available=True)
+    
     # single_product = 
     # in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=)
     context = {
