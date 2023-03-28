@@ -4,7 +4,6 @@
 $(document).ready(function() {
 	// jQuery code
 
-
     /* ///////////////////////////////////////
 
     THESE FOLLOWING SCRIPTS ONLY FOR BASIC USAGE, 
@@ -53,8 +52,11 @@ $(document).ready(function() {
 
 
 
-
     
 }); 
 // jquery end
 
+setTimeout(function(){
+    // #message refers to the alert.html tag with message id
+    $('#message').fadeOut('slow')
+}, 4000)

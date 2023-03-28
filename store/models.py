@@ -24,6 +24,8 @@ class Product(models.Model):
 variation_category_choices = (
     ('color', 'color'),
     ('size','size'),
+    ('ram', 'ram'),
+    ('storage', 'storage')
 )
 
 class VariationManager(models.Manager):
@@ -32,6 +34,12 @@ class VariationManager(models.Manager):
     
     def size(self):
         return super(VariationManager, self).filter(variation_category='size', is_active=True)
+    
+    def ram(self):
+        return super(VariationManager, self).filter(variation_category='ram', is_active=True)
+    
+    def storage(self):
+        return super(VariationManager, self).filter(variation_category='storage', is_active=True)
 
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

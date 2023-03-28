@@ -139,3 +139,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #informing the app to know that we are using custom user model for authentication 
 
 AUTH_USER_MODEL = 'accounts.Account'
+
+
+# adding this for showing messages to the user
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR : 'danger',
+}

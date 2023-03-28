@@ -20,46 +20,72 @@
             {% csrf_token %}
             <article class="content-body">
             
-            <h2 class="title">{{single_product.product_name}}</h2>
-            
-            <div class="mb-3"> 
-                <var class="price h4">Rs. {{single_product.price}}</var> 
-            </div> 
-            
-            <p>{{single_product.description}}</p>
-            <hr>
-                {% if single_product.variation_set.color  %}
-                    <div class="row">
-                        <div class="item-option-select">
-                            <h6>Choose Color</h6>
-                            <select name="color" class="form-control" required>
-                                <option value="" disabled selected>Choose Color</option>
-                                {% for i in single_product.variation_set.color %}
-                                    <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div> <!-- row.// -->
-                {% endif %}
-                {% if single_product.variation_set.size %}
-                    <div class="row">
-                        <div class="item-option-select">
-                            <h6>Select Size</h6>
-                            <select name="size" class="form-control" required>
-                                <option value="" disabled selected>Choose Size</option>
-                                {% for i in single_product.variation_set.size %}
-                                    <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div> <!-- row.// -->
-                    <hr>
-                {% endif %}
-                {% if single_product.stock < 1 %}
-                    <h3 class="text-danger">Out of stock</h3>
-                {% else %}
-                    <button type="submit" class="btn  btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </button>
-                {% endif %}
+                <h2 class="title">{{single_product.product_name}}</h2>
+                
+                <div class="mb-3"> 
+                    <var class="price h4">Rs. {{single_product.price}}</var> 
+                </div> 
+                
+                <p>{{single_product.description}}</p>
+                <hr>
+                    {% if single_product.variation_set.color  %}
+                        <div class="row">
+                            <div class="item-option-select">
+                                <h6>Choose Color</h6>
+                                <select name="color" class="form-control" required>
+                                    <option value="" disabled selected>Choose Color</option>
+                                    {% for i in single_product.variation_set.color %}
+                                        <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> <!-- row.// -->
+                    {% endif %}
+                    {% if single_product.variation_set.size %}
+                        <div class="row">
+                            <div class="item-option-select">
+                                <h6>Select Size</h6>
+                                <select name="size" class="form-control" required>
+                                    <option value="" disabled selected>Choose Size</option>
+                                    {% for i in single_product.variation_set.size %}
+                                        <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> <!-- row.// -->
+                    {% endif %}
+                    {% if single_product.variation_set.ram %}
+                        <div class="row">
+                            <div class="item-option-select">
+                                <h6>Select ram</h6>
+                                <select name="ram" class="form-control" required>
+                                    <option value="" disabled selected>Choose ram</option>
+                                    {% for i in single_product.variation_set.ram %}
+                                        <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> <!-- row.// -->
+                    {% endif %}
+                    {% if single_product.variation_set.storage %}
+                        <div class="row">
+                            <div class="item-option-select">
+                                <h6>Select storage</h6>
+                                <select name="storage" class="form-control" required>
+                                    <option value="" disabled selected>Choose storage</option>
+                                    {% for i in single_product.variation_set.storage %}
+                                        <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> <!-- row.// -->
+                        <hr>
+                    {% endif %}
+                    {% if single_product.stock < 1 %}
+                        <h3 class="text-danger">Out of stock</h3>
+                    {% else %}
+                        <button type="submit" class="btn btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </button>
+                    {% endif %}
             </article> <!-- product-info-aside .// -->
         </form>
                 </main> <!-- col.// -->

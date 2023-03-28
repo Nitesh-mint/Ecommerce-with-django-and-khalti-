@@ -14,6 +14,7 @@ class MyAccountManager(BaseUserManager):
             last_name = last_name,
             username = username,
         )
+        user.is_active = True
         user.set_password(password) #python's built in method as pass cannot be stored in plain text
         user.save(using=self._db)
         return user

@@ -10,6 +10,7 @@
             <form action="{% url 'register' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        {% include 'includes/alerts.html' %}
                         <div class="col form-group">
                             <label>First name</label>
                               {{ form.first_name }}
