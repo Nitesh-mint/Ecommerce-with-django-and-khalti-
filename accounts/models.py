@@ -59,8 +59,7 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.email
     
-
-    object = MyAccountManager() #informing this class about the above class
+    objects = MyAccountManager() #informing this class about the above class
 
     #this is for superadmin and admin roles
     def has_perm(self, perm, obj=None):

@@ -4,6 +4,7 @@
 $(document).ready(function() {
 	// jQuery code
 
+
     /* ///////////////////////////////////////
 
     THESE FOLLOWING SCRIPTS ONLY FOR BASIC USAGE, 
@@ -49,6 +50,7 @@ $(document).ready(function() {
 	if($('[data-toggle="tooltip"]').length>0) {  // check if element exists
 		$('[data-toggle="tooltip"]').tooltip()
 	} // end if
+
 
 
 

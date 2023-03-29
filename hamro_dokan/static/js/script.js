@@ -51,10 +51,5 @@ $(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	} // end if
 
-
-
-
-    
-}); 
+});
 // jquery end
-
