@@ -19,7 +19,6 @@ class RegistrationForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs['placeholder'] = "Enter your first name"
         self.fields['last_name'].widget.attrs['placeholder'] = "Enter your last name"
         self.fields['email'].widget.attrs['placeholder'] = "Enter your email"
-        self.fields['country'].widget.attrs['placeholder'] = "Enter your country name"
         self.fields['phone_number'].widget.attrs['placeholder'] = "Enter your phone number"
 
         # to add boostrap class to all the fields in the registraion page

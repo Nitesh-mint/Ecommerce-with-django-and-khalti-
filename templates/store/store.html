@@ -143,20 +143,18 @@
                                     <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
                                     <div class="price-wrap mt-2">
                                         <span class="price">Rs. {{ product.price }}</span>
-                                        <del class="price-old">$1980</del>
+                                        <del class="price-old">980</del>
                                     </div> <!-- price-wrap.// -->
-                                </div>
-                                {% if in_cart %}
+                                    {% if in_cart %}
                                     <p class="btn btn-success">Added to cart </p>
-                                {% else %}
-                                    {% if product.stock < 1 %} 
-                                        <center>
-                                            <h4 class="text-danger">Out of stock</h4><br>
-                                        </center>
                                     {% else %}
-                                        <a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-primary">Add to cart </a>
+                                        {% if product.stock < 1 %} 
+                                            <center>
+                                                <p class="text-danger">Out of stock</p><br>
+                                            </center>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                </div>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->  

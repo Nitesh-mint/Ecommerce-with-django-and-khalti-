@@ -44,8 +44,7 @@ def add_cart(request, product_id):
             existing_variation  = item.variation.all()
             existing_variation_list.append(list(existing_variation))
             id.append(item.id)
-
-        print(existing_variation_list)
+            
         if product_variation in existing_variation_list : 
             index = existing_variation_list.index(product_variation)
             item_id = id[index]
@@ -93,6 +92,7 @@ def remove_cart_item(request, product_id, cart_item_id):
     cart_item.delete()
     return redirect('cart')
 
+
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
         tax = 0
@@ -115,3 +115,6 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'grand_total': grand_total,
     }
     return render(request, 'store/cart.html', context)  
+
+def checkout(request):
+    return render(request, 'store/checkout.html')

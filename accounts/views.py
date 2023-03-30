@@ -20,17 +20,23 @@ def registration(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
-            country = form.cleaned_data['country']
+            country = request.POST['country']
             phone_number = form.cleaned_data['phone_number']
             password = form.cleaned_data['password']
             username = email.split("@")[0]
-            user = Account.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
-            user.phone_number = phone_number
-            user.country = country
-            messages.success(request, 'Registraion Successful.')
-            user.save()
+            if len(password) >=8:
+                user = Account.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
+                user.phone_number = phone_number
+                user.country = country
+                messages.success(request, 'Registraion Successful.')
+                user.save()
+            else:
+                messages.error(request, "Password must be 8 or more digits")
+                return redirect('register')
+
         else:
-            print(form.errors)
+            messages.error(request,form.errors)
+            return redirect('register')
     else:
         form = RegistrationForm()
     context =  {
@@ -76,7 +82,7 @@ def forgotPassword(request):
             mail_subject = "Reset Your Password"
             message = render_to_string('accounts/reset_password_email.html',{
                 'user':user,
-                'domain':current_site,
+                'domain':current_site,  
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
@@ -84,7 +90,7 @@ def forgotPassword(request):
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.succes(request, "Password reset email has been sent to your email address, Please check your mail to continue")
+            messages.success(request, "Password reset email has been sent to your email address, Please check your mail to continue")
             redirect('login')
 
 
@@ -94,5 +100,41 @@ def forgotPassword(request):
         
     return render(request, 'accounts/forgotPassword.html')
 
-def resetPassword_validate(request):
-    return HttpResponse('Success')
+def resetPassword_validate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        request.session['uid'] = uid
+        messages.success(request, "Please reset your password.")
+        return redirect("resetPassword")
+    else:
+        messages.error(request, "The link has been expired.")
+        return redirect('login')
+
+def resetPassword(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirmPassword = request.POST['confirmPassword']
+
+        if password == confirmPassword:
+            if len(password) >=8:
+                uid = request.session.get('uid')
+                user = Account.objects.get(pk=uid)
+                user.set_password(password)
+                user.save()
+                messages.success(request, 'Password reset successfull')
+                return redirect('login')
+            else:
+                messages.error(request, 'Password must be 8 digits or more.')
+                return redirect('resetPassword')
+
+        else:
+            messages.error(request, 'Password doesnot match')
+            return redirect('resetPassword')
+    else:
+        return render(request, 'accounts/resetPassword.html')
+    

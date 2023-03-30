@@ -26,9 +26,14 @@
                         <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div> <!-- form-group end.// -->
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-sm-6">
                             <label>Country</label>
-                              {{ form.country }}
+                                <select name="country" class="form-control">
+                                    <option value="Nepal">Nepal</option>
+                                    <option value="India">India</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="Japan">Japan</option>
+                                </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Phone Number</label>
@@ -60,19 +65,5 @@
     
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
-    
-    
-    <!-- ========================= FOOTER ========================= -->
-    <footer class="section-footer border-top padding-y">
-        <div class="container">
-            <p class="float-md-right"> 
-                &copy Copyright 2023 All rights reserved
-            </p>
-            <p>
-                <a href="#">Terms and conditions</a>
-            </p>
-        </div><!-- //container -->
-    </footer>
-    <!-- ========================= FOOTER END // ========================= -->
         
 {% endblock content %}
