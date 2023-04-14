@@ -20,7 +20,7 @@
                     <th scope="col">Product</th>
                     <th scope="col" width="120">Quantity</th>
                     <th scope="col" width="120">Price</th>
-                    <th scope="col" class="text-right" width="200"> </th>
+                    <!-- <th scope="col" class="text-right" width="200"></th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -62,7 +62,7 @@
                                 </td>
                                 <td> 
                                     <div class="price-wrap"> 
-                                        <var class="price">{{ cart_item.sub_total }}</var> 
+                                        <var class="price">Rs.{{ cart_item.sub_total }}</var> 
                                         <small class="text-muted"> Rs. {{ cart_item.product.price }} each </small> 
                                     </div> <!-- price-wrap .// -->
                                 </td>

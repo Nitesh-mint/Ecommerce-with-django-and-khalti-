@@ -50,7 +50,6 @@ Bootstrap with custom variables
 }
 
 html {
-  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -547,6 +546,7 @@ pre code {
 
 .container {
   width: 100%;
+  padding-top: 100px;
   padding-right: 10px;
   padding-left: 10px;
   margin-right: auto;
@@ -4369,6 +4369,8 @@ input[type=button].btn-block {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
+  padding-top: 40px;
+  
 }
 
 .card-title {

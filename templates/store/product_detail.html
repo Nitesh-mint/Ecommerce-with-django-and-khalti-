@@ -28,10 +28,15 @@
                 
                 <p>{{single_product.description}}</p>
                 <hr>
-                    {% if single_product.variation_set.color  %}
+                    {% if single_product.stock < 1 %}
+                        <h3 class="text-danger">Out of stock</h3>
+                    {% else %}
+                        <button type="submit" class="btn btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
+                        <hr>
+                        {% if single_product.variation_set.color  %}
                         <div class="row">
                             <div class="item-option-select">
-                                <h6>Choose Color</h6>
+                                <h6 class="ml-2">Choose Color</h6>
                                 <select name="color" class="form-control" required>
                                     <option value="" disabled selected>Choose Color</option>
                                     {% for i in single_product.variation_set.color %}
@@ -44,7 +49,7 @@
                     {% if single_product.variation_set.size %}
                         <div class="row">
                             <div class="item-option-select">
-                                <h6>Select Size</h6>
+                                <h6 class="ml-2">Select Size</h6>
                                 <select name="size" class="form-control" required>
                                     <option value="" disabled selected>Choose Size</option>
                                     {% for i in single_product.variation_set.size %}
@@ -57,7 +62,7 @@
                     {% if single_product.variation_set.ram %}
                         <div class="row">
                             <div class="item-option-select">
-                                <h6>Select ram</h6>
+                                <h6 class="ml-2">Select ram</h6>
                                 <select name="ram" class="form-control" required>
                                     <option value="" disabled selected>Choose ram</option>
                                     {% for i in single_product.variation_set.ram %}
@@ -70,7 +75,7 @@
                     {% if single_product.variation_set.storage %}
                         <div class="row">
                             <div class="item-option-select">
-                                <h6>Select storage</h6>
+                                <h6 class="ml-2">Select storage</h6>
                                 <select name="storage" class="form-control" required>
                                     <option value="" disabled selected>Choose storage</option>
                                     {% for i in single_product.variation_set.storage %}
@@ -81,10 +86,6 @@
                         </div> <!-- row.// -->
                         <hr>
                     {% endif %}
-                    {% if single_product.stock < 1 %}
-                        <h3 class="text-danger">Out of stock</h3>
-                    {% else %}
-                        <button type="submit" class="btn btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </button>
                     {% endif %}
             </article> <!-- product-info-aside .// -->
         </form>

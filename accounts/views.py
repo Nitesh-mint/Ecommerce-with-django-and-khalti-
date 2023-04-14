@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect , HttpResponse
 from . import forms
 from .forms import RegistrationForm
 from .models import Account
-from django.contrib import messages , auth
+from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
 #for password reset

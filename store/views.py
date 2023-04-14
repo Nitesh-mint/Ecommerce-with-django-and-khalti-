@@ -7,6 +7,8 @@ from carts.views import _cart_id
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.db.models import Q #to make OR operator possible in searching product in line 57
 
+from django.contrib import messages
+
 
 from django.http import HttpResponse
 
@@ -58,7 +60,6 @@ def search(request):
             product_count = products.count()
         else:
             pass
-
     context = {
         'products' : products,
         'product_count': product_count,
