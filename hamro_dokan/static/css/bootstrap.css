@@ -54,13 +54,39 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/* Nitesh raya added this  */
+#n{
+  background-color: #fafafa;
+}
+.navbar-nav .nav-link {
+  font-size: 18px;
+  padding: 12px 20px;
+}
+/* Navbar search bar */
+.fa-shopping-cart {
+font-size: 24px;
+}
+.navbar-nav .dropdown-toggle {
+margin-right: auto;
+/* margin-left: 100px; */
+margin-bottom: 10px;
+/* float:left; */
+}
 
+#golo{
+  border-radius: 90px;
+  padding: 30px;
+  border: none;
+}
+.container-fluid{
+padding: 0px 0px;
+}
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
 body {
-  margin: 0;
+  margin-top: 120px;
   font-family: "Inter", Arial, "Helvetica Neue", "Segoe UI", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
@@ -546,7 +572,7 @@ pre code {
 
 .container {
   width: 100%;
-  padding-top: 100px;
+  /* padding-top: 100px; */
   padding-right: 10px;
   padding-left: 10px;
   margin-right: auto;
@@ -4168,7 +4194,7 @@ input[type=button].btn-block {
   .navbar-expand-lg > .container,
 .navbar-expand-lg > .container-fluid {
     padding-right: 0;
-    padding-left: 0;
+    /* padding-left: 0; */
   }
 }
 @media (min-width: 992px) {

@@ -23,7 +23,7 @@
                 <h2 class="title">{{single_product.product_name}}</h2>
                 
                 <div class="mb-3"> 
-                    <var class="price h4 text-danger">Rs. {{single_product.price}}</var> 
+                    <var class="price h4" style="color: #dc2f2f;">Rs. {{single_product.price}}</var> 
                 </div> 
                 
                 <p>{{single_product.description}}</p>
@@ -31,7 +31,7 @@
                     {% if single_product.stock < 1 %}
                         <h3 class="text-danger">Out of stock</h3>
                     {% else %}
-                        <button type="submit" class="btn btn-success"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
+                        <button type="submit" class="btn btn-success pb-2 pt-2"> <span class="text ">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
                         <hr>
                         {% if single_product.variation_set.color  %}
                         <div class="row">
