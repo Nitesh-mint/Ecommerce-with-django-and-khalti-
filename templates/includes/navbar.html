@@ -7,16 +7,21 @@
 .form-control {
   background-color: #f5f5f5;
   border: none;
-  border-radius: 20px;
+  border-radius: 100px;
   color: #000;
   height: fit-content;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 13px;
+  padding-bottom: 13px;
   font-size: 19px;    
+}
+
+.kart{
+    color: green;
+    width: 1000px;
 }
 </style>
 <header class="section-header">
-    <nav class="navbar navbar-expand-sm fixed-top" id="n">
+    <nav class="navbar navbar-expand-sm fixed-top shadow-sm p-3 mb-5 bg-white rounded" id="n">
         <div class="container-fluid py-3">
             <a href="{% url 'home' %}" class="navbar-brand ">
                 <img class="logo" src="{% static 'images/logo_Rm_bg.png' %}">
@@ -38,7 +43,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'store' %}" class=" ml-2 mr-2 nav-link btn btn-outline-success">Store</a>
+                        <a href="{% url 'store' %}" class=" ml-2 mr-2 nav-link btn btn-success">Store</a>
                     </li>
                     <li class="nav-item">
                         <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0" method="GET">
@@ -51,7 +56,7 @@
                             {% if user.id is not None %}
                                 <small class="text-muted">Welcome {{user.first_name}}!</small>
                             {% else %}
-                                <small class="text-muted">Welcome {{user.first_name}}!</small>
+                                <small class="text-muted">Welcome Guest!</small>
                             {% endif %}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -65,7 +70,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'cart' %}" class="nav-link">
+                        <a href="{% url 'cart' %}" class="nav-link" class="kart">
                             <i class="fa fa-shopping-cart"></i>
                             <span class="badge badge-pill badge-danger">{{cart_count}}</span>
                         </a>

@@ -56,7 +56,7 @@ html {
 }
 /* Nitesh raya added this  */
 #n{
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 .navbar-nav .nav-link {
   font-size: 18px;
@@ -65,12 +65,15 @@ html {
 /* Navbar search bar */
 .fa-shopping-cart {
 font-size: 24px;
+color: rgb(0,0,0);
+color: -moz-linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
+color: -webkit-linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
+color: linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#168c57",GradientType=1);;
 }
 .navbar-nav .dropdown-toggle {
-margin-right: auto;
-/* margin-left: 100px; */
-margin-bottom: 10px;
-/* float:left; */
+  margin-right: auto;
+  margin-bottom: 5px;
 }
 
 #golo{
@@ -78,8 +81,9 @@ margin-bottom: 10px;
   padding: 30px;
   border: none;
 }
+
 .container-fluid{
-padding: 0px 0px;
+  padding: 0px 0px;
 }
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
@@ -2466,13 +2470,19 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #00b517;
-  border-color: #00b517;
+  background: rgb(9,210,70);
+  background: -moz-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: -webkit-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#09d246",endColorstr="#19df86",GradientType=1);
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #008f12;
-  border-color: #008211;
+  background: rgb(55,136,87);
+background: -moz-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#378857",endColorstr="#03a85e",GradientType=1);
 }
 .btn-success:focus, .btn-success.focus {
   box-shadow: 0 0 0 0.2rem rgba(38, 192, 58, 0.5);
@@ -2758,13 +2768,19 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success {
-  color: #00b517;
-  border-color: #00b517;
+  background: rgb(9,210,70);
+  background: -moz-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: -webkit-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#09d246",endColorstr="#19df86",GradientType=1);
 }
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #00b517;
-  border-color: #00b517;
+  background: rgb(55,136,87);
+background: -moz-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#378857",endColorstr="#03a85e",GradientType=1);
 }
 .btn-outline-success:focus, .btn-outline-success.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 181, 23, 0.5);

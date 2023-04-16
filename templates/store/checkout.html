@@ -9,7 +9,7 @@
             <article class="card mb-4">
             <div class="card-body">
                 <h4 class="card-title mb-4">Contact info</h4>
-                <form action="">
+                <form action="" method="POST">
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label>Frst name</label>
@@ -28,7 +28,6 @@
                             <input type="email" placeholder="example@gmail.com" class="form-control">
                         </div>
                     </div> <!-- row.// -->	
-                </form>
             </div> <!-- card-body.// -->
             </article> <!-- card.// -->
             
@@ -150,7 +149,8 @@
                                 <p class="text-center mb-3">
                                     <img src="{% static 'images/misc/payments.png' %}" height="26">
                                 </p>
-                                <a href="./place-order.html" class="btn btn-success btn-block"> Place Order </a>
+                                <button class="btn btn-success btn-block" type="submit">Place Order</button>
+                            </form>
                             </div> <!-- card-body.// -->
                         </div> <!-- card.// -->
                     </aside> <!-- col.// -->
