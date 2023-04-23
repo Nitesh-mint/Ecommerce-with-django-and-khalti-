@@ -63,6 +63,7 @@ def search(request):
     context = {
         'products' : products,
         'product_count': product_count,
+        'keyword': keyword,
     } 
 
     return render(request, 'store/store.html', context)

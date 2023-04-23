@@ -8,14 +8,14 @@
         <!-- ============================ COMPONENT 1 ================================= -->
         <div class="card">
             <div class="row no-gutters">
-                <aside class="col-md-6">
+                <aside class="col-md-4">
         <article class="gallery-wrap"> 
             <div class="img-big-wrap">
             <img id="detailphoto" class="image-fluid" src="{{ single_product.Image.url }}">
             </div> <!-- img-big-wrap.// -->
         </article> <!-- gallery-wrap .end// -->
                 </aside>
-                <main class="col-md-6 border-left">
+                <main class="col-md-8">
         <form action="{% url 'add_cart' single_product.id %}" method="POST">
             {% csrf_token %}
             <article class="content-body">
@@ -27,12 +27,9 @@
                 </div> 
                 
                 <p>{{single_product.description}}</p>
-                <hr>
                     {% if single_product.stock < 1 %}
                         <h3 class="text-danger">Out of stock</h3>
                     {% else %}
-                        <button type="submit" class="btn btn-success pb-2 pt-2"> <span class="text ">Add to cart</span> <i class="fas fa-shopping-cart"></i></button>
-                        <hr>
                         {% if single_product.variation_set.color  %}
                         <div class="row">
                             <div class="item-option-select">
@@ -84,8 +81,9 @@
                                 </select>
                             </div>
                         </div> <!-- row.// -->
-                        <hr>
                     {% endif %}
+                    <hr>
+                    <button type="submit" class="btn btn-success pb-2 pt-2 mb-3"> <span class="text ">Add to cart</span><i class="fa fa-shopping-cart"></i></button>
                     {% endif %}
             </article> <!-- product-info-aside .// -->
         </form>

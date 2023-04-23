@@ -60,18 +60,42 @@ def login(request):
                 cart = Cart.objects.get(cart_id=_cart_id(request))
                 is_cart_item_exist = CartItem.objects.filter(cart=cart).exists()
                 if is_cart_item_exist:
-                    cart_Item = CartItem.objects.filter(cart=cart)
-
-                    for item in cart_Item:
-                        item.user = user
-                        item.save()
+                    cart_item = CartItem.objects.filter(cart=cart)
+                    #get product variation from the cart_id
+                    product_variation =[]
+                    for item in cart_item:
+                        variation = item.variation.all()
+                        product_variation.append(list(variation))
+                    
+                    #getting the product variation from the logged in user if there is any 
+                    cart_item = CartItem.objects.filter(user=user)
+                    ex_variation_list = []
+                    id = []
+                    for item in cart_item:
+                        existing_variation = item.variation.all()
+                        ex_variation_list.append(list(existing_variation))
+                        id.append(item.id)
+                    
+                    for pr in product_variation:
+                        if pr in ex_variation_list:
+                            index = ex_variation_list.index(pr)
+                            item_id = id[index]
+                            item = CartItem.objects.get(id=item_id)
+                            item.quantity +=1
+                            item.user = user
+                            item.save()
+                        else:
+                            cart_item = CartItem.objects.filter(cart=cart)
+                            for item in cart_item:
+                                item.user = user
+                                item.save()
             except:
                 pass
             auth.login(request, user)
             # messages.success(request, "Logged in successfully")
             return redirect('home')
         else:
-            messages.error(request, "Invalid login credentials")
+            messages.error(request, "Incorrect username or password")
             return redirect('login')
     return render(request,'accounts/login.html')
 

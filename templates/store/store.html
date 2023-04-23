@@ -4,11 +4,12 @@
 {% block content %}
         
     <!-- ========================= SECTION PAGETOP ========================= -->
-    <section class="section-pagetop bg">
+    <section class="section-pagetop">
         {% if products %}
         <div class="container">
             {% if 'search' in request.path %}
-                <h2 class="title-page">Search Result</h2>
+                <h2 class="p-6">Search Result for:<span class="font-weight-normal">"{{keyword}}"</span></h2>
+                <hr>
             {% else  %}
                 <h2 class="title-page">Our Store</h2>
             {% endif %}
@@ -28,10 +29,10 @@
                 <header class="card-header">
                     <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
                         <i class="icon-control fa fa-chevron-down"></i>
-                        <h6 class="title">Categories</h6>
+                        <h6 class="title text-success">Categories</h6>
                     </a>
                 </header>
-                <div class="filter-content collapse show" id="collapse_1" style="">
+                <div class="filter-content collapse show" id="collapse_1">
                     <div class="card-body">
 
                         <ul class="list-menu">
@@ -46,12 +47,12 @@
             </article> <!-- filter-group  .// -->
             <article class="filter-group">
                 <header class="card-header">
-                    <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                    <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="false" class="">
                         <i class="icon-control fa fa-chevron-down"></i>
-                        <h6 class="title">Sizes</h6>
+                        <h6 class="title text-success">Sizes</h6>
                     </a>
                 </header>
-                <div class="filter-content collapse show" id="collapse_4" style="">
+                <div class="filter-content collapse show" id="collapse_4">
                     <div class="card-body">
                     <label class="checkbox-btn">
                         <input type="checkbox">
@@ -80,7 +81,7 @@
                 <header class="card-header">
                     <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
                         <i class="icon-control fa fa-chevron-down"></i>
-                        <h6 class="title">Price range </h6>
+                        <h6 class="title text-success">Price range </h6>
                     </a>
                 </header>
                 <div class="filter-content collapse show" id="collapse_3" style="">
@@ -113,7 +114,7 @@
                             </select>
                         </div>
                         </div> <!-- form-row.// -->
-                        <button class="btn btn-block btn-primary">Apply</button>
+                        <button class="btn btn-block btn-success">Apply</button>
                     </div><!-- card-body.// -->
                 </div>
             </article> <!-- filter-group .// -->
@@ -184,6 +185,8 @@
         
         </div> <!-- container .//  -->
     {% else %}
+        <h2 class="p-6">Search Result for:<span class="font-weight-normal">"{{keyword}}"</span></h2>
+        <hr>
         <div class="container">
             <h2 class="text-center">No results</h2>
         </div>

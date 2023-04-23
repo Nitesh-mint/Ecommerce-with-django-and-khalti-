@@ -63,14 +63,6 @@ html {
   padding: 12px 20px;
 }
 /* Navbar search bar */
-.fa-shopping-cart {
-font-size: 24px;
-color: rgb(0,0,0);
-color: -moz-linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
-color: -webkit-linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
-color: linear-gradient(90deg, rgba(0,0,0,1) 16%, rgba(22,140,87,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#168c57",GradientType=1);;
-}
 .navbar-nav .dropdown-toggle {
   margin-right: auto;
   margin-bottom: 5px;
@@ -78,7 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endCo
 
 #golo{
   border-radius: 90px;
-  padding: 30px;
+  padding: 15px;
   border: none;
 }
 
@@ -3101,7 +3093,6 @@ input[type=button].btn-block {
   top: 100%;
   left: 0;
   z-index: 1000;
-  display: none;
   float: left;
   min-width: 10rem;
   padding: 0.5rem 0;
@@ -3114,6 +3105,12 @@ input[type=button].btn-block {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.37rem;
+  /* added for the smooth dropdown */
+  display: block;
+  visibility: hidden;
+  opacity:0;
+  transform: translateY(50px);
+  transition:.5s ease all;
 }
 
 .dropdown-menu-left {
@@ -3288,6 +3285,10 @@ input[type=button].btn-block {
 
 .dropdown-menu.show {
   display: block;
+  visibility: visible;
+  opacity:1;
+  transform: translateY(0px);
+  transition:.5s ease all;
 }
 
 .dropdown-header {
