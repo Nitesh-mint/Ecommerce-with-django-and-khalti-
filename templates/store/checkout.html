@@ -4,57 +4,56 @@
     <section class="section-content padding-y bg">
         <div class="container">
             <!-- ============================ COMPONENT 2 ================================= -->
-            <div class="row">
-                    <main class="col-md-6">
-            <article class="card mb-4">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Contact info</h4>
-                <form action="" method="POST">
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label>Frst name</label>
-                            <input type="text" placeholder="Type here" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label>Last name</label>
-                            <input type="text" placeholder="Type here" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label>Phone</label>
-                            <input type="text" value="98" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label>Email</label>
-                            <input type="email" placeholder="example@gmail.com" class="form-control">
-                        </div>
-                    </div> <!-- row.// -->	
-            </div> <!-- card-body.// -->
-            </article> <!-- card.// -->
-            
-            
-            <article class="card mb-4">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Delivery info</h4>
-                <form action="" meth="POST">
-
-                    <div class="row">
-                            <div class="form-group col">
-                                <label>State</label>
-                                <input type="text" placeholder="Your Distric" class="form-control">
+            <form action="{% url 'place_order' %}" method="POST">
+                <div class="row">
+                        <main class="col-md-6">
+                <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Contact info</h4>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="">First name</label>
+                                <input name="first_name" type="text" placeholder="Type here" class="form-control" required>
                             </div>
-                            <div class="form-group col-sm-8">
-                                <label>Area</label>
-                                <input type="text" placeholder="Type here" class="form-control">
+                            <div class="form-group col-sm-6">
+                                <label for="">Last name</label>
+                                <input name="last_name" type="text" placeholder="Type here" class="form-control" required>
                             </div>
-                            <div class="form-group col-sm-12">
-                                <label>Address</label>
-                                <input type="text" placeholder="Full address" class="form-control">
+                            <div class="form-group col-sm-6">
+                                <label for="">Phone</label>
+                                <input name="phone" type="text" value="98" class="form-control" required>
                             </div>
-                    </div> <!-- row.// -->	
-                </form>
-            </div> <!-- card-body.// -->
-            </article> <!-- card.// -->
-            
+                            <div class="form-group col-sm-6">
+                                <label for="">Email</label>
+                                <input name="email" type="email" placeholder="example@gmail.com" class="form-control" required>
+                            </div>
+                        </div> <!-- row.// -->	
+                </div> <!-- card-body.// -->
+                </article> <!-- card.// -->
+                
+                
+                <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Delivery info</h4>
+                        <div class="row">
+                                <div class="form-group col">
+                                    <label for="">State</label>
+                                    <input name="state" type="text" placeholder="Your Distric" class="form-control" required>
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label for="">Area</label>
+                                    <input name="area" type="text" placeholder="Type here" class="form-control" required>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="">Address</label>
+                                    <input name="address" type="text" placeholder="Full address" class="form-control" required>
+                                </div>
+                        </div> <!-- row.// -->	
+                </div> <!-- card-body.// -->
+                </article> <!-- card.// -->
+                <button name="submit" class="btn btn-success btn-block" type="submit">Place Order</button>
+            </form>
             
             <article class="accordion" id="accordion_pay">
                 <div class="card">
@@ -88,12 +87,12 @@
                 <div id="pay_payme" class="collapse" data-parent="#accordion_pay">
                     <div class="card-body">
                         <p class="alert alert-success">Some information or instruction</p>
-                        <form class="form-inline">
+                        <!-- <form class="form-inline">
                             <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
                             <input type="text" class="form-control mr-2" style="width: 100px"  placeholder="dd/yy" name="">
                             <input type="number" maxlength="3" class="form-control mr-2"  style="width: 100px"  placeholder="cvc" name="">
                             <button class="btn btn btn-success">Button</button>
-                        </form>
+                        </form> -->
                     </div> <!-- card body .// -->
                 </div> <!-- collapse .// -->
                 </div> <!-- card.// -->
@@ -149,15 +148,13 @@
                                 <p class="text-center mb-3">
                                     <img src="{% static 'images/misc/payments.png' %}" height="26">
                                 </p>
-                                <button class="btn btn-success btn-block" type="submit">Place Order</button>
-                            </form>
                             </div> <!-- card-body.// -->
                         </div> <!-- card.// -->
                     </aside> <!-- col.// -->
                 </div> <!-- row.// -->
             
             <!-- ============================ COMPONENT 2 END//  ================================= -->
-            
+            {{ forms.field.errors }}
         </div> <!-- container .//  -->
     </section>
 {% endblock content %}
