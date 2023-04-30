@@ -7,6 +7,9 @@ from .models import Order
 from django.http import HttpResponse
 import datetime
 
+def payment(request):
+    return render(request, 'orders/payment.html')
+
 def placeOrder(request, total=0, quantity=0):
     current_user = request.user
 
@@ -54,8 +57,15 @@ def placeOrder(request, total=0, quantity=0):
             order_number  = current_date + str(data.id) #here data.id is the primary key of the Order
             data.order_number = order_number
             data.save()
+            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+            context = {
+                'order': order,
+                'cart_items': cart_items,
+                'tax': tax,
+                'grand_total' : grand_total,
+            }
 
-            return redirect('checkout')
+            return render(request, 'orders/payment.html', context)
         else:
             return HttpResponse(form.fields)
         

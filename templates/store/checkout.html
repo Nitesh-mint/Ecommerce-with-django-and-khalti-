@@ -52,8 +52,6 @@
                         </div> <!-- row.// -->	
                 </div> <!-- card-body.// -->
                 </article> <!-- card.// -->
-                <button name="submit" class="btn btn-success btn-block" type="submit">Place Order</button>
-            </form>
             
             <article class="accordion" id="accordion_pay">
                 <div class="card">
@@ -148,11 +146,12 @@
                                 <p class="text-center mb-3">
                                     <img src="{% static 'images/misc/payments.png' %}" height="26">
                                 </p>
+                                <button name="submit" class="btn btn-success btn-block" type="submit">Place Order</button>
+                                </form>
                             </div> <!-- card-body.// -->
                         </div> <!-- card.// -->
                     </aside> <!-- col.// -->
                 </div> <!-- row.// -->
-            
             <!-- ============================ COMPONENT 2 END//  ================================= -->
             {{ forms.field.errors }}
         </div> <!-- container .//  -->

@@ -41,6 +41,9 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     upated_at = models.DateTimeField(auto_now=True) 
 
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
     def __str__(self):
         return self.first_name
 
