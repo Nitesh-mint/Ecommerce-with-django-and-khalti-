@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content  %}
-<!-- <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script> -->
+<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
     <section class="section-content padding-y bg">
         <div class="container">
         
@@ -106,7 +106,7 @@
         <!-- ============================ COMPONENT 1 END .// ================================= --> 
         </div> <!-- container .//  -->
     </section>
-    <!-- <script>
+    <script>
         var config = {
             // replace the publicKey with yours
             "publicKey": "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
@@ -140,5 +140,5 @@
             // minimum transaction amount must be 10, i.e 1000 in paisa.
             checkout.show({amount: 1000});
         }
-    </script> -->
+    </script>
 {% endblock content %}
