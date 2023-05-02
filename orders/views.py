@@ -11,6 +11,7 @@ def payment(request):
     return render(request, 'orders/payment.html')
 
 def placeOrder(request, total=0, quantity=0):
+    is_payment_made = False
     current_user = request.user
 
     cart_items = CartItem.objects.filter(user=current_user)
@@ -63,7 +64,11 @@ def placeOrder(request, total=0, quantity=0):
                 'cart_items': cart_items,
                 'tax': tax,
                 'grand_total' : grand_total,
+                "is_payment_made" : is_payment_made,
             }
+            print(is_payment_made)
+            is_payment_made = request.POST.get('p')
+            print(is_payment_made)
 
             return render(request, 'orders/payment.html', context)
         else:
