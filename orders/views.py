@@ -29,9 +29,9 @@ def payment(request):
     order.save()
 
     #move the cart items to the ordered product table
-    cart_item = CartItem.objects.filter(user=request.user)
+    cart_items = CartItem.objects.filter(user=request.user)
 
-    for item in cart_item:
+    for item in cart_items:
         orderproduct = OrderProduct()
         orderproduct.order_id = order.id
         orderproduct.payment = payment
@@ -40,6 +40,12 @@ def payment(request):
         orderproduct.quantity  = item.quantity
         orderproduct.product_price = item.product.price
         orderproduct.ordered = True
+        orderproduct.save()
+
+        cart_item = CartItem.objects.get(id=item.id)
+        productvaritaion = cart_item.variation.all()
+        orderproduct = OrderProduct.objects.get(id=orderproduct.id)
+        orderproduct.variation.set(productvaritaion)
         orderproduct.save()
 
     return render(request, 'orders/payment.html')
