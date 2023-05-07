@@ -7,6 +7,8 @@ from .models import Order, Payment, OrderProduct
 from django.http import HttpResponse
 import datetime
 
+from store.models import Product
+
 import json
 
 def payment(request):
@@ -47,6 +49,14 @@ def payment(request):
         orderproduct = OrderProduct.objects.get(id=orderproduct.id)
         orderproduct.variation.set(productvaritaion)
         orderproduct.save()
+
+        #reduce the quantity of the sold products
+        product = Product.objects.get(id=item.product_id)
+        product.stock = product.stock - item.quantity
+        product.save()
+
+    #delete the products that are ordered
+    CartItem.objects.filter(user=request.user).delete()
 
     return render(request, 'orders/payment.html')
 
