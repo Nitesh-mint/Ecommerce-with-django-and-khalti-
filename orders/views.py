@@ -11,6 +11,10 @@ from store.models import Product
 
 import json
 
+#for sending mail 
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
 def payment(request):
     body = json.loads(request.body)
     print(body)
@@ -57,6 +61,18 @@ def payment(request):
 
     #delete the products that are ordered
     CartItem.objects.filter(user=request.user).delete()
+
+    #send mail to the user 
+    mail_subject = "Thank you for your order"
+    message = render_to_string('orders/order_received_email.html',{
+            'user':request.user,
+            'order': order,
+        })
+    to_email = request.user.email
+    send_email = EmailMessage(mail_subject, message, to=[to_email])
+    send_email.content_subtype = 'html'
+    send_email.send()
+    print("Sent mail success")
 
     return render(request, 'orders/payment.html')
 
