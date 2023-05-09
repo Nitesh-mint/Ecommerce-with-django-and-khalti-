@@ -126,7 +126,7 @@ def forgotPassword(request):
                 'token': default_token_generator.make_token(user),
             })
             to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email = EmailMessage(mail_subject, message, to=[to_email], from_email="Hamrodokan@ilam.com")
             send_email.content_subtype = 'html'
             send_email.send()
 

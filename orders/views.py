@@ -14,6 +14,8 @@ import json
 #for sending mail 
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
+
 
 def payment(request):
     body = json.loads(request.body)
@@ -69,7 +71,11 @@ def payment(request):
             'order': order,
         })
     to_email = request.user.email
-    send_email = EmailMessage(mail_subject, message, to=[to_email])
+    from_email = "Hamrodokan <noreply@hamrodokan.com>"
+    send_email = EmailMessage(mail_subject, message, to=[to_email],sender={
+        "name":"Hamrodokan",
+        "email": "noreply@hamrodokan.com"
+    })
     send_email.content_subtype = 'html'
     send_email.send()
     print("Sent mail success")
@@ -143,6 +149,6 @@ def placeOrder(request, total=0, quantity=0):
     else:
         return redirect('checkout')
         
-
+@login_required
 def order_complete(request):
     return render(request, 'orders/order_complete.html')

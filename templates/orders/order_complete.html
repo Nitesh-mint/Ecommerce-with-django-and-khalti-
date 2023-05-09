@@ -7,11 +7,14 @@
         <div class="card  mx-auto h-100 border-success text-center">
                 <img src="">
                 <div class="card-body">
+                    <center>
+                        <i class="fas fa-check-circle" style="font-size: 72px;margin-bottom: 20px;color: #28A745;"></i>
+                    </center>
                     <h1 class="card-title">Payment Successful</h1>
                     <div class="card-text mb-4">
                         <p>Hi {{ user.first_name }},</p>
                         <p>Your payment has been successfully processed. Thank you for your purchase!</p>
-                        <a href="#" class="btn btn-success">Continue Shopping</a>
+                        <a href="{% url 'home' %}" class="btn btn-success">Continue Shopping</a>
                     </div>
                 </div>
         </div>

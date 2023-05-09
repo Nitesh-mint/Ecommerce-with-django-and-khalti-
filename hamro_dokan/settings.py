@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -149,11 +151,19 @@ MESSAGE_TAGS = {
     messages.ERROR : 'danger',
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = "haamrodookan@gmail.com"
-EMAIL_HOST_PASSWORD = "bgxsgtbwfihnhydr"
-# EMAIL_HOST_PASSWORD = "tjpsvkutssguytyw"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'anymail.backends.sendinblue.EmailBackend'
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": "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",
+    "SEND_DEFAULTS": {
+        "tags": ["app"]
+    },
+    "DEBUG_API_REQUESTS": DEBUG,
+}
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = "haamrodookan@gmail.com"
+# EMAIL_HOST_PASSWORD = "bgxsgtbwfihnhydr"
+# # EMAIL_HOST_PASSWORD = "tjpsvkutssguytyw"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# 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
