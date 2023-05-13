@@ -94,10 +94,33 @@
         <br>
         <div class="row">
                     <div class="col-md-9">
+                    
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <h4>Leave a review so that it helpul for other customers</h4>
+                    <div class="rate">
+                        <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
+                        <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" title="4.5" class="half"></label>                                                                               
+                        <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8" title="4"></label>
+                        <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7" title="3.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6" title="3"></label>
+                        <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5" title="2.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4" title="2"></label>
+                        <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3" title="1.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2" title="1"></label>
+                    </div>
+                    <div>
+                        Review Title: 
+                        <input type="text" class="form-control" name="subject" required>
+                        Review Message:
+                        <input type="text" class="form-control" name="review" required>
+                        <br>
+                        <input type="submit" class="btn btn-primary">
+                    </div>
+                </form>
         
             <header class="section-heading">
-                <h3>Customer Reviews</h3>  
-                
+                <h3>Customer Reviews</h3> 
             </header>
         
             <article class="box mb-3">
