@@ -31,8 +31,8 @@
                         <h3 class="text-danger">Out of stock</h3>
                     {% else %}
                         {% if single_product.variation_set.color  %}
-                        <div class="row">
-                            <div class="item-option-select">
+                        <div class="row" >
+                            <div class="custom-select">
                                 <h6 class="ml-2">Choose Color</h6>
                                 <select name="color" class="form-control" required>
                                     <option value="" disabled selected>Choose Color</option>
@@ -93,55 +93,66 @@
         <!-- ============================ COMPONENT 1 END .// ================================= -->
         <br>
         <div class="row">
-                    <div class="col-md-9">
-                    
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <h4>Leave a review so that it helpul for other customers</h4>
-                    <div class="rate">
-                        <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
-                        <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" title="4.5" class="half"></label>                                                                               
-                        <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8" title="4"></label>
-                        <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7" title="3.5" class="half"></label>
-                        <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6" title="3"></label>
-                        <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5" title="2.5" class="half"></label>
-                        <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4" title="2"></label>
-                        <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3" title="1.5" class="half"></label>
-                        <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2" title="1"></label>
-                    </div>
-                    <div>
-                        Review Title: 
-                        <input type="text" class="form-control" name="subject" required>
-                        Review Message:
-                        <input type="text" class="form-control" name="review" required>
-                        <br>
-                        <input type="submit" class="btn btn-primary">
-                    </div>
-                </form>
-        
+                    <div class="col-md-9 align-center">
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'submit_review' single_product.id %}">
+                        {% csrf_token %}
+                        <h4>Leave a review so that it helpul for other customers</h4>
+                        <div class="rate">
+                            <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
+                            <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" title="4.5" class="half"></label>                                                                               
+                            <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8" title="4"></label>
+                            <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7" title="3.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6" title="3"></label>
+                            <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5" title="2.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4" title="2"></label>
+                            <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3" title="1.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2" title="1"></label>
+                        </div>
+                        {% include 'includes/alerts.html' %}
+                        <div>
+                            Review Title: 
+                            <input type="text" class="form-control" name="subject" required>
+                            Review Message:
+                            <textarea type="text" class="form-control" name="review" rows="4"></textarea>
+                            <br>
+                            {% if orderproduct %}
+                            <input type="submit" class="btn btn-success">
+                            {% else %}
+                            <p class="text-danger" style="font-size: 20px;">You must purchase the product to rate it.</p>
+                            {% endif %}
+                        </div>
+                    </form>
+                {% else %}
+                <p class="text-danger" style="font-size: 20px;">You must login to be able to review or rate this product.</p>
+                {% endif %}
+
             <header class="section-heading">
-                <h3>Customer Reviews</h3> 
+                <h4>Customer Reviews</h4> 
             </header>
-        
-            <article class="box mb-3">
-                <div class="icontext w-100">
-                    <img src="{% static '/images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
-                    <div class="text">
-                        <span class="date text-muted float-md-right">24.04.2020 </span>  
-                        <h6 class="mb-1">Mike John </h6>
-                    </div>
-                </div> <!-- icontext.// -->
-                <div class="mt-3">
-                    <p>
-                        Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    </p>	
-                </div>
-            </article>
-        
-            
-        
+            {% if reviews %}
+                {% for review in reviews %}
+                    <article class="box mb-3">
+                        <div class="icontext w-100">
+                            <img src="{% static '/images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
+                            <div class="text">
+                                <span class="date text-muted float-md-right">{{review.updated_at}}</span>  
+                                <h6 class="mb-1">{{review.user.first_name}}</h6>
+                            </div>
+                        </div> <!-- icontext.// -->
+                        <div class="mt-3">
+                            <p style="font-size: 20px; font-weight: bold;">
+                                {{review.subject}}
+                            </p>	
+                            <p style="font-size: 18px;">
+                                {{review.review}}
+                            </p>	
+                        </div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>No ratings for the products yet.</p>
+            {% endif %}
             </div> <!-- col.// -->
         </div> <!-- row.// -->
         

@@ -34,3 +34,59 @@ input:checked + label:hover, input:checked ~ label:hover, input:checed ~ label:h
 label:hover ~ input:checked ~ label{
     color:#cc9000;
 } 
+
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-select select {
+    display: none;
+  }
+  
+  .custom-select .select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #888;
+    pointer-events: none;
+  }
+  
+  .custom-select select,
+  .custom-select .select-arrow {
+    padding: 8px;
+  }
+  
+  .custom-select select {
+    width: 200px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .custom-select select:focus {
+    outline: none;
+    border-color: #6c63ff;
+  }
+  
+  .custom-select:hover select {
+    border-color: #aaa;
+  }
+  
+  .custom-select select option {
+    padding: 8px;
+  }
+  
+  .custom-select select option:hover {
+    background-color: #f5f5f5;
+  }  
+  
