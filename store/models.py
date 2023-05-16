@@ -1,6 +1,7 @@
 from django.db import models
 from category.models import Category
 from django.urls import reverse
+from django.db.models import Avg
 
 from accounts.models import Account
 
@@ -22,6 +23,21 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+    
+    # calculating the average rating of the product
+    def averageRating(self):
+        reviews = ReviewRating.objects.filter(product=self, status=True).aggregate(average=Avg('rating'))
+        avg = 0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
+    
+    def reveiewCount(self):
+        reviews = ReviewRating.objects.filter(product=self, status=True)
+        i = 0
+        for review in reviews:
+            i = i+1
+        return i
 
 variation_category_choices = (
     ('color', 'color'),

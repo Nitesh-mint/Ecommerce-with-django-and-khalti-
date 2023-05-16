@@ -43,6 +43,20 @@
 					<a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a>
 					<figcaption class="info-wrap">
 						<a href="{{product.get_url}}" class="title">{{ product.product_name }}</a>
+						{% if product.averageRating %}
+							<div class="rating-star">
+								<span>
+									<i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
+									<i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and  product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
+									<i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and  product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
+									<i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and  product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
+									<i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+								</span>
+								<span style="color:gray	;">({{product.reveiewCount}})</span>
+							</div>
+						{% else %}
+							<p class="text-danger" style="font-size: 12px;">No ratings yet</p>
+						{% endif %}
 						<div class="price mt-1">	Rs.{{ product.price }}</div> <!-- price-wrap.// -->
 					</figcaption>
 				</div>
