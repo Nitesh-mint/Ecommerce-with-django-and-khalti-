@@ -145,8 +145,8 @@
                             <img src="{% static '/images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
                             <div class="text">
                                 <span class="date text-muted float-md-right">{{review.updated_at}}</span>  
-                                <h6 class="mb-1">{{review.user.first_name}} {{review.user.last_name}}</h6>
-                                <div class="rating-star">
+                                <h6 class="mb-1 badge badge-dark rounded-pill d-inline">{{review.user.first_name}} {{review.user.last_name}}</h6>
+                                <div class="rating-star mt-3">
                                     <span>
                                         <i class="fa fa-star{% if review.rating == 0.5 %}-half{% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
                                         <i class="fa fa-star{% if review.rating == 1.5 %}-half{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>

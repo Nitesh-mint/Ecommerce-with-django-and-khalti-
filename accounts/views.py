@@ -17,6 +17,8 @@ from django.core.mail import EmailMessage
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 
+from orders.models import Order
+
 def registration(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -108,7 +110,14 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    user = request.user
+    orders = Order.objects.order_by('-created_at').filter(user__id=request.user.id, is_ordered=True) 
+    orders_count = orders.count()
+    context = {
+        'user': user,
+        'orders_count' : orders_count,
+    }
+    return render(request,'accounts/dashboard.html',context)
 
 def forgotPassword(request):
     if request.method == "POST":
@@ -177,4 +186,12 @@ def resetPassword(request):
             return redirect('resetPassword')
     else:
         return render(request, 'accounts/resetPassword.html')
+    
+
+def myOrders(request):
+    orderproduct = Order.objects.order_by('-created_at').filter(user=request.user, is_ordered=True)
+    context = {
+        "orderproduct" : orderproduct,
+    }
+    return render(request, 'accounts/my_orders.html', context)
     
