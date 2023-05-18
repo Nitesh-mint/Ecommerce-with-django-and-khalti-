@@ -1,5 +1,5 @@
 from django import forms
-from .models import Account
+from .models import Account, UserProfile
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={ #attrs in for the css class
@@ -33,3 +33,36 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Password doesnot match'
             )
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['first_name','last_name', 'phone_number','email']
+    
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['placeholder'] = "Enter your first name"
+        self.fields['last_name'].widget.attrs['placeholder'] = "Enter your last name"
+        self.fields['phone_number'].widget.attrs['placeholder'] = "Enter your phone number"
+
+        # to add boostrap class to all the fields in the registraion page
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+
+class UserProfileForm(forms.ModelForm):
+    profile_picture = forms.ImageField(required=False, error_messages={'invalid':("Image files only")},widget=forms.FileInput)
+    class Meta:
+        model = UserProfile
+        fields = ['state','area','address','profile_picture']
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['state'].widget.attrs['placeholder'] = "Enter your distric name"
+        self.fields['area'].widget.attrs['placeholder'] = "Enter your area name"
+        self.fields['address'].widget.attrs['placeholder'] = "Enter your full address"
+
+        # to add boostrap class to all the fields in the registraion page
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+    

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    {% include 'includes/alerts.html' %}
+    <div class="row padding-y">
+        <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                <ul class="list-group">
+                    <a class="list-group-item" href="{% url 'dashboard' %}"> Dashboard </a>
+                    <a class="list-group-item" href="{% url 'myOrders' %}"> My Orders </a>
+                    <a class="list-group-item active" href="{% url 'editProfile' %}">Edit Profile</a>
+                    <a class="list-group-item" href="#">Change Password</a>
+                </ul>
+                <br>
+                <a class="btn btn-outline-danger btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+                <!--   SIDEBAR .//END   -->
+        </aside>
+        <div class="col-md-9">
+            <form method="POST" action="{% url "editProfile" %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="">First name</label>
+                        {{user_form.first_name}}
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="">Last name</label>
+                        {{user_form.last_name}}
+                    </div>
+                    <div class="form-group col-sm-4 text-center">
+                        <img src="{% if userprofile.profile_picture %}{{userprofile.profile_picture.url}}{% endif %}"
+                      alt="Profile Picture" class="img-fluid rounded-circle border border-dark border-3"
+                      style="width: 70px;">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="">Phone</label>
+                        {{user_form.phone_number}}
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="">Email</label>
+                        {{user_form.email}}
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="">Profile Picture</label>
+                        {{profile_form.profile_picture}}
+                    </div>
+                    <div class="form-group col">
+                        <label for="">District</label>
+                        {{profile_form.state}}
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="">Address</label>
+                        {{profile_form.address}}
+                        <br>
+                        <input type="submit" class="btn btn-success" name="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

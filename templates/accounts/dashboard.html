@@ -2,44 +2,45 @@
 
 {% block content %}
     <!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-conten padding-y pt-5">
-
-    <div class="container">
-        <div class="row">
-        <aside class="col-md-3">
-            <!--   SIDEBAR   -->
-            <ul class="list-group">
-                <a class="list-group-item active" href="#"> Dashboard </a>
-                <a class="list-group-item" href="{% url 'myOrders' %}"> My Orders </a>
-                <a class="list-group-item" href="#">Edit Profile</a>
-                <a class="list-group-item" href="#">Change Password</a>
-            </ul>
-            <br>
-            <a class="btn btn-outline-danger btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
-            <!--   SIDEBAR .//END   -->
-        </aside>
-        <main class="col-md-9">
-            <div class="card border-dark pb-3">
-                <div class="row g-0">
-                  <div class="col-md-5 text-center mt-4">
-                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar Image" width="19%" style="border-radius: 50%;"><br>
-                    <strong class="d-inline-block">{{user.first_name}} {{user.last_name}}</strong><br>
-                    <span class="badge badge-primary rounded-pill d-inline">{{user.email}}</span>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="card-body text-center">
-                      <h5 class="card-title">Total Orders</h5>
-                      <p class="card-text">{{orders_count}}</p>
-                      <a href="{% url 'myOrders' %}">View Orders</a>
+  <section class="section-content padding-y">
+      <div class="container">
+          <div class="row">
+          <aside class="col-md-3">
+              <!--   SIDEBAR   -->
+              <ul class="list-group">
+                  <a class="list-group-item active" href="#"> Dashboard </a>
+                  <a class="list-group-item" href="{% url 'myOrders' %}"> My Orders </a>
+                  <a class="list-group-item" href="{% url 'editProfile' %}">Edit Profile</a>
+                  <a class="list-group-item" href="#">Change Password</a>
+              </ul>
+              <br>
+              <a class="btn btn-outline-danger btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+              <!--   SIDEBAR .//END   -->
+          </aside>
+          <main class="col-md-9">
+              <div class="card border-dark pb-3">
+                  <div class="row g-0">
+                    <div class="col-md-5 text-center mt-4">
+                      <img src="{% if userprofile.profile_picture %}{{userprofile.profile_picture.url}}{% endif %}"
+                      alt="Profile Picture" class="img-fluid rounded-circle border border-dark border-3"
+                      style="width: 70px;"><br>
+                      <strong class="d-inline-block">{{user.first_name}} {{user.last_name}}</strong><br>
+                      <span class="badge badge-primary rounded-pill d-inline">{{user.email}}</span>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Total Orders</h5>
+                        <p class="card-text">{{orders_count}}</p>
+                        <a href="{% url 'myOrders' %}">View Orders</a>
+                      </div>
                     </div>
                   </div>
-                </div>
-            </div>
-        </main>
-    </div> <!-- row.// -->
-    </div>
-    
-    
-    </section>
+              </div>
+          </main>
+      </div> <!-- row.// -->
+      </div>
+      
+      
+  </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock content %}

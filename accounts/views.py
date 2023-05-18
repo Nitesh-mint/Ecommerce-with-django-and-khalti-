@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect , HttpResponse
+from django.shortcuts import render, redirect , HttpResponse, get_object_or_404
 from . import forms
-from .forms import RegistrationForm
-from .models import Account
+from .forms import RegistrationForm, UserForm, UserProfileForm
+from .models import Account, UserProfile
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -113,9 +113,15 @@ def dashboard(request):
     user = request.user
     orders = Order.objects.order_by('-created_at').filter(user__id=request.user.id, is_ordered=True) 
     orders_count = orders.count()
+    if UserProfile.objects.filter(user=user).exists():
+        userprofile = UserProfile.objects.get(user=user)
+        redirect('dashboard')
+    else:
+        userprofile = UserProfile.objects.create(user=user)
     context = {
         'user': user,
         'orders_count' : orders_count,
+        "userprofile":userprofile,
     }
     return render(request,'accounts/dashboard.html',context)
 
@@ -194,4 +200,25 @@ def myOrders(request):
         "orderproduct" : orderproduct,
     }
     return render(request, 'accounts/my_orders.html', context)
+
+def editProfile(request):
+    userprofile = get_object_or_404(UserProfile, user=request.user) #gets the userprofile
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user) #instance because we want to edit form
+        profile_form = UserProfileForm(request.POST,request.FILES, instance=userprofile) #file upload request.FILES
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Profile updated")
+            return redirect('editProfile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=userprofile)
+    
+    context = {
+        'user_form' : user_form,
+        'profile_form' : profile_form,
+        'userprofile' : userprofile,
+    }
+    return render(request, 'accounts/edit_profile.html', context)
     
