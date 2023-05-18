@@ -222,3 +222,27 @@ def editProfile(request):
     }
     return render(request, 'accounts/edit_profile.html', context)
     
+
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST['currentpass']
+        new_password = request.POST['newpass']
+        confirm_password = request.POST['confirmpass']
+    
+        user = Account.objects.get(username__exact=request.user.username)
+        if new_password == confirm_password:
+            if len(new_password) <=8:
+
+                success = user.check_password(current_password)
+                if success:
+                    user.set_password(new_password)
+                    user.save()
+                    messages.success(request,"Password updated successfully")
+                else:
+                    messages.error(request, "Your currnet password doesn't match")
+            else:
+                messages.error(request, "Password must contain more than 8 characters")
+        else:
+            messages.error(request, "Your password doesn't match")
+
+    return render(request, 'accounts/change_password.html')

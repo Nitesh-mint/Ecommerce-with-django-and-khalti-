@@ -4,19 +4,19 @@
 <div class="container">
     {% include 'includes/alerts.html' %}
     <div class="row padding-y">
-        <aside class="col-md-3">
+        <aside class="col-md-2">
                 <!--   SIDEBAR   -->
                 <ul class="list-group">
                     <a class="list-group-item" href="{% url 'dashboard' %}"> Dashboard </a>
                     <a class="list-group-item" href="{% url 'myOrders' %}"> My Orders </a>
                     <a class="list-group-item active" href="{% url 'editProfile' %}">Edit Profile</a>
-                    <a class="list-group-item" href="#">Change Password</a>
+                    <a class="list-group-item" href="{% url 'changepassword' %}">Change Password</a>
                 </ul>
                 <br>
                 <a class="btn btn-outline-danger btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
                 <!--   SIDEBAR .//END   -->
         </aside>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <form method="POST" action="{% url "editProfile" %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
