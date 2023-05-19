@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% include 'includes/navbar.html' %}   
 <body style="font-weight: bold;">
 	<!-- ========================= SECTION MAIN ========================= -->
 	<section class="section-intro padding-y-sm">
@@ -38,28 +39,40 @@
 	<div class="row">
 		{% for product in products %}
 			<div class="col-md-3">
-				<div class="card card-product-grid">
-					<!-- url chiancha so belwo .url is necessary as it will reutrn the link of the image not the actual image file -->
-					<a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a>
-					<figcaption class="info-wrap">
-						<a href="{{product.get_url}}" class="title">{{ product.product_name }}</a>
-						{% if product.averageRating %}
-							<div class="rating-star">
-								<span>
-									<i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
-									<i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and  product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
-									<i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and  product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
-									<i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and  product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
-									<i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
-								</span>
-								<span style="color:gray	;">({{product.reveiewCount}})</span>
-							</div>
-						{% else %}
-							<p class="text-danger" style="font-size: 12px;">No ratings yet</p>
-						{% endif %}
-						<div class="price mt-1">	Rs.{{ product.price }}</div> <!-- price-wrap.// -->
-					</figcaption>
-				</div>
+				<a href="{{product.get_url}}">
+					<div class="card-body card-body-cascade">
+						<div class="card-body card-product-grid">
+							<!-- url chiancha so belwo .url is necessary as it will reutrn the link of the image not the actual image file -->
+							<div class="view view-cascade overlay">
+								<img class="card-img-top" src="{{ product.Image.url }}"
+								  alt="Card image cap">
+								<a>
+								  <div class="mask rgba-white-slight"></div>
+								</a>
+							</div>						
+							<!-- <a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a> -->
+							<figcaption class="info-wrap">
+								<p class="title">{{ product.product_name }}</p>
+								{% if product.averageRating %}
+									<div class="rating-star">
+										<span>
+											<i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and  product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and  product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and  product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+										</span>
+										<span style="color:gray;">({{product.reveiewCount}})</span>
+									</div>
+								{% else %}
+									<p class="text-danger" style="font-size: 12px;">No ratings yet</p>
+								{% endif %}
+								<div class="price mt-1"><i class="fa fa-inr" aria-hidden="true"></i>
+									{{ product.price }}</div> <!-- price-wrap.// -->
+							</figcaption>
+						</div>
+					</div>
+				</a>
 			</div> <!-- col.// -->
 		{% endfor %}
 	</div> <!-- row.// -->

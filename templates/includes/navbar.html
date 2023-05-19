@@ -92,19 +92,20 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             {% if user.id is not None %}
                                 <a href="{% url 'dashboard' %}" class="dropdown-item">Dashboard</a>
-                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                                <a href="{% url 'logout' %}" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                             {% else %}
-                                <a href="{% url 'login' %}" class="dropdown-item">Log in</a>
-                                <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'login' %}" class="dropdown-item"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+                                <a href="{% url 'register' %}" class="dropdown-item"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
                             {% endif %}
                         </div>
                     </li>
-                        <li class="nav-item">
-                            <a href="{% url 'cart' %}" class="nav-link">
-                                <i class="fa fa-shopping-cart" id="kart"></i>
-                                <span class="badge badge-pill badge-danger">{{cart_count}}</span>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{% url 'cart' %}" class="nav-link" aria-label="Cart">
+                          <i class="fas fa-shopping-cart" id="kart" data-toggle="tooltip" data-placement="bottom" title="View Cart"></i>
+                          <span class="badge badge-pill badge-danger">{{ cart_count }}</span>
+                        </a>
+                    </li>
+                      
                 </ul>
             </div>
         </div>

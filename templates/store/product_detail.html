@@ -2,36 +2,42 @@
 {% load static %}
 
 {% block content %}
+
+{% include 'includes/navbar.html' %}   
     <section class="section-content padding-y bg">
         <div class="container">
         
         <!-- ============================ COMPONENT 1 ================================= -->
         <div class="card">
             <div class="row no-gutters">
-                <aside class="col-md-4">
-        <article class="gallery-wrap"> 
-            <div class="img-big-wrap">
-            <img id="detailphoto" class="image-fluid" src="{{ single_product.Image.url }}">
-            </div> <!-- img-big-wrap.// -->
-        </article> <!-- gallery-wrap .end// -->
+                <aside class="col-md-5">
+                    <article class="gallery-wrap"> 
+                        <div class="img-big-wrap">
+                        <img id="detailphoto" class="image-fluid" src="{{ single_product.Image.url }}">
+                        </div> <!-- img-big-wrap.// -->
+                    </article> <!-- gallery-wrap .end// -->
                 </aside>
-                <main class="col-md-8">
+                <main class="col-md-7">
         <form action="{% url 'add_cart' single_product.id %}" method="POST">
             {% csrf_token %}
             <article class="content-body">
             
                 <h2 class="title">{{single_product.product_name}}</h2>
-                <div class="rating-star">
-                    <span>
-                        <i class="fa fa-star{% if single_product.averageRating < 0.5 %}-o{% elif single_product.averageRating >= 0.5 and single_product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
-                        <i class="fa fa-star{% if single_product.averageRating < 1.5 %}-o{% elif single_product.averageRating >= 1.5 and  single_product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
-                        <i class="fa fa-star{% if single_product.averageRating < 2.5 %}-o{% elif single_product.averageRating >= 2.5 and  single_product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
-                        <i class="fa fa-star{% if single_product.averageRating < 3.5 %}-o{% elif single_product.averageRating >= 3.5 and  single_product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
-                        <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
-                    </span>
-                </div>
+                {% if single_product.averageRating %}
+                    <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if single_product.averageRating < 0.5 %}-o{% elif single_product.averageRating >= 0.5 and single_product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.averageRating < 1.5 %}-o{% elif single_product.averageRating >= 1.5 and  single_product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.averageRating < 2.5 %}-o{% elif single_product.averageRating >= 2.5 and  single_product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.averageRating < 3.5 %}-o{% elif single_product.averageRating >= 3.5 and  single_product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                {% else %}
+                    <p>No ratings yet</p>
+                {% endif %}
                 <div class="mb-3"> 
-                    <var class="price h4" style="color: #dc2f2f;">Rs. {{single_product.price}}</var> 
+                    <var class="price h4" style="color: #dc2f2f;"><i class="fa fa-inr" aria-hidden="true"></i> {{single_product.price}}</var> 
                 </div> 
                 
                 <p class="fs-1">{{single_product.description}}</p>
@@ -39,20 +45,18 @@
                         <h3 class="text-danger">Out of stock</h3>
                     {% else %}
                         {% if single_product.variation_set.color  %}
-                        <div class="row">
+                        
                             <div class="item-option-select">
                                 <h6 class="ml-2">Choose Color</h6>
                                 <select name="color" class="form-control" required>
                                     <option value="" disabled selected>Choose Color</option>
                                     {% for i in single_product.variation_set.color %}
-                                        <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst }}</option>
+                                        <option class="" value="{{i.variation_value | lower}}">{{i.variation_value | capfirst }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div> <!-- row.// -->
                     {% endif %}
                     {% if single_product.variation_set.size %}
-                        <div class="row">
                             <div class="item-option-select">
                                 <h6 class="ml-2">Select Size</h6>
                                 <select name="size" class="form-control" required>
@@ -62,10 +66,8 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div> <!-- row.// -->
                     {% endif %}
                     {% if single_product.variation_set.ram %}
-                        <div class="row">
                             <div class="item-option-select">
                                 <h6 class="ml-2">Select ram</h6>
                                 <select name="ram" class="form-control" required>
@@ -75,10 +77,8 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div> <!-- row.// -->
                     {% endif %}
                     {% if single_product.variation_set.storage %}
-                        <div class="row">
                             <div class="item-option-select">
                                 <h6 class="ml-2">Select storage</h6>
                                 <select name="storage" class="form-control" required>
@@ -88,10 +88,9 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div> <!-- row.// -->
                     {% endif %}
-                    <hr>
-                    <button type="submit" class="btn btn-success pb-2 pt-2 mb-3"> <span class="text ">Add to cart</span><i class="fa fa-shopping-cart"></i></button>
+                    <br>
+                    <button type="submit" class="btn btn-success p-3 mt-4 mb-3"> <span class="text ">Add to cart</span><i class="fa fa-shopping-cart"></i></button>
                     {% endif %}
             </article> <!-- product-info-aside .// -->
         </form>
@@ -132,7 +131,7 @@
                         </div>
                     </form>
                 {% else %}
-                <p class="text-danger" style="font-size: 20px;">You must login to be able to review or rate this product.</p>
+                    <a class="btn btn-primary p-3" href="{% url 'login' %}" style="font-size:19px;"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                 {% endif %}
 
             <header class="section-heading">
