@@ -96,8 +96,8 @@
                                 <p class="text-center mb-3">
                                     <img src="{% static '/images/misc/payments.png' %}" height="26">
                                 </p>
-                                <button  class="btn btn-success btn-block"  id="w-60"> <a href="{% url 'checkout' %}"id="w-60" class="btn text-white"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout </a></button>
-                                <button class="btn btn-dark btn-block" id="w-60"><i class="fa-solid fa-arrow-left"></i> <a class="btn text-white" href="{% url 'store' %}" >Continue Shopping</a></button>
+                                <a href="{% url 'checkout' %}"><button class="btn btn-success btn-block text-white mb-2" id="w-60" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout</button></a>
+                                <a href="{% url 'store' %}" ><button class="btn btn-dark btn-block" id="w-60"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</button></a>
                             </div> <!-- card-body.// -->
                             </div> <!-- card.// -->
                     

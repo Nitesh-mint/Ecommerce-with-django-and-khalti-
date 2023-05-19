@@ -3,11 +3,11 @@ from .models import Account, UserProfile
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={ #attrs in for the css class
-        'placeholder': "Enter a password",
+        'placeholder': "",
         'class': 'form-control'
     }))
     confirm = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': "Confirm your password",
+        'placeholder': "",
         'class': 'form-control'
     }))
     class Meta:
@@ -16,10 +16,10 @@ class RegistrationForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['placeholder'] = "Enter your first name"
-        self.fields['last_name'].widget.attrs['placeholder'] = "Enter your last name"
-        self.fields['email'].widget.attrs['placeholder'] = "Enter your email"
-        self.fields['phone_number'].widget.attrs['placeholder'] = "Enter your phone number"
+        self.fields['first_name'].widget.attrs['placeholder'] = ""
+        self.fields['last_name'].widget.attrs['placeholder'] = ""
+        self.fields['email'].widget.attrs['placeholder'] = ""
+        self.fields['phone_number'].widget.attrs['placeholder'] = ""
 
         # to add boostrap class to all the fields in the registraion page
         for field in self.fields:
