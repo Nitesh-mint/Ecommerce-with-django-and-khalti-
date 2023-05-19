@@ -1,0 +1,17 @@
+<div class="card mx-auto" style="max-width: 600px;border: none;margin-bottom: 40px;">
+    <div class="row">
+      <div class="col-md-4 mb-6">
+        <a href="{% url 'dashboard' %}" class="text-dark"><button
+            class="btn btn-outline-light btn-block text-dark {% if '/dashboard/' in request.path %}active{% endif %}" id="w-60"><i
+              class="fa-solid fa-house"></i></button></a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'myOrders' %}" class="text-dark"><button class="btn btn-outline-light btn-block text-dark {% if '/my_orders/' in request.path %}active{% endif %}"
+            id="w-60"><i class="fa-solid fa-basket-shopping"></i></button></a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'changepassword' %}" class="text-dark"><button
+            class="btn btn-outline-light btn-block text-dark  {% if '/accounts/changepassword/' in request.path %}active{% endif %}" id="w-60"><i class="fa-solid fa-lock"></i></button></a>
+      </div>
+    </div>
+</div>

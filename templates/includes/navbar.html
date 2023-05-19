@@ -91,7 +91,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             {% if user.id is not None %}
-                                <a href="{% url 'dashboard' %}" class="dropdown-item">Dashboard</a>
+                                <a href="{% url 'dashboard' %}" class="dropdown-item"><i
+                                    class="fa-solid fa-house"></i> Dashboard</a>
                                 <a href="{% url 'logout' %}" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                             {% else %}
                                 <a href="{% url 'login' %}" class="dropdown-item"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
