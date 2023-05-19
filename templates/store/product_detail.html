@@ -105,7 +105,7 @@
                 {% if user.is_authenticated %}
                     <form method="POST" action="{% url 'submit_review' single_product.id %}">
                         {% csrf_token %}
-                        <h4>Leave a review so that it helpul for other customers</h4>
+                        <h4>Leave a review so that it will help other customers</h4>
                         <div class="rate">
                             <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
                             <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" title="4.5" class="half"></label>                                                                               
@@ -142,7 +142,7 @@
                 {% for review in reviews %}
                     <article class="box mb-3">
                         <div class="icontext w-100">
-                            <img src="{% static '/images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
+                            <img src="{{ review.user.userprofile.profile_picture.url }}" alt="pic" class="img-xs icon rounded-circle">
                             <div class="text">
                                 <span class="date text-muted float-md-right">{{review.updated_at}}</span>  
                                 <h6 class="mb-1 badge badge-dark rounded-pill d-inline">{{review.user.first_name}} {{review.user.last_name}}</h6>

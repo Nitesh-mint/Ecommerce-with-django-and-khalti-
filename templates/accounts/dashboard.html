@@ -5,12 +5,11 @@
   <section class="section-content padding-y">
       <div class="container">
           <div class="row">
-          <aside class="col-md-3">
+          <aside class="col-md-3 mb-4">
               <!--   SIDEBAR   -->
               <ul class="list-group">
                   <a class="list-group-item active" href="#"> Dashboard </a>
                   <a class="list-group-item" href="{% url 'myOrders' %}"> My Orders </a>
-                  <a class="list-group-item" href="{% url 'editProfile' %}">Edit Profile</a>
                   <a class="list-group-item" href="{% url 'changepassword' %}">Change Password</a>
               </ul>
               <br>
@@ -26,12 +25,14 @@
                       style="width: 70px;"><br>
                       <strong class="d-inline-block">{{user.first_name}} {{user.last_name}}</strong><br>
                       <span class="badge badge-primary rounded-pill d-inline">{{user.email}}</span>
+                      <br>
+                      <a class="btn btn-outline-dark mt-3" href="{% url 'editProfile' %}">Edit</a>
                     </div>
                     <div class="col-md-7">
                       <div class="card-body text-center">
                         <h5 class="card-title">Total Orders</h5>
                         <p class="card-text">{{orders_count}}</p>
-                        <a href="{% url 'myOrders' %}">View Orders</a>
+                        <a href="{% url 'myOrders' %}" class="btn btn-outline-dark">View Orders</a>
                       </div>
                     </div>
                   </div>

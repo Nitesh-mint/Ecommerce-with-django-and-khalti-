@@ -9,7 +9,6 @@
                 <ul class="list-group">
                     <a class="list-group-item" href="{% url 'dashboard' %}"> Dashboard </a>
                     <a class="list-group-item active" href="{% url 'myOrders' %}"> My Orders </a>
-                    <a class="list-group-item" href="{% url 'editProfile' %}">Edit Profile</a>
                     <a class="list-group-item" href="{% url 'changepassword' %}">Change Password</a>
                 </ul>
                 <br>
@@ -17,44 +16,50 @@
                 <!--   SIDEBAR .//END   -->
             </aside>
             <div class="col-md-10">
-                <table class="table mb-0 bg-white">
-                    <thead class="bg-light">
-                    <tr>
-                        <th>#Order</th>
-                        <th>Billing Name</th>
-                        <th>Phone</th>
-                        <th>Order Total</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orderproduct%}
-                            <tr>
-                                <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="ms-3">
-                                    <p class="fw-bold mb-1">{{order.order_number}}</p>
+                {% if orderproduct %}
+                    <table class="table mb-0 bg-white">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>#Order</th>
+                            <th>Billing Name</th>
+                            <th>Phone</th>
+                            <th>Order Total</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orderproduct%}
+                                <tr>
+                                    <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3">
+                                        <p class="fw-bold mb-1">{{order.order_number}}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                </td>
-                                <td>
-                                <p class="fw-normal mb-1">{{order.first_name}} {{order.last_name}}</p>
-                                </td>
-                                <td>{{order.phone}}</td>
-                                <td>
-                                <p>{{order.grand_total}}</p>
-                                </td>
-                                <td>
-                                    <span>{{order.created_at}}</span>
-                                </td>
-                                <td>
-                                    <span class="badge badge-success rounded-pill d-inline">Delivered</span>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td>
+                                    <p class="fw-normal mb-1">{{order.first_name}} {{order.last_name}}</p>
+                                    </td>
+                                    <td>{{order.phone}}</td>
+                                    <td>
+                                    <p>{{order.grand_total}}</p>
+                                    </td>
+                                    <td>
+                                        <span>{{order.created_at}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success rounded-pill d-inline">Delivered</span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                        <h4>You don't have any order history.</h4>
+                    </div>
+                {% endif %}
             </div>
     </div>
 </div>

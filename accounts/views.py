@@ -193,14 +193,14 @@ def resetPassword(request):
     else:
         return render(request, 'accounts/resetPassword.html')
     
-
+@login_required(login_url='login')
 def myOrders(request):
     orderproduct = Order.objects.order_by('-created_at').filter(user=request.user, is_ordered=True)
     context = {
         "orderproduct" : orderproduct,
     }
     return render(request, 'accounts/my_orders.html', context)
-
+@login_required(login_url='login')
 def editProfile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user) #gets the userprofile
     if request.method == 'POST':
@@ -210,7 +210,7 @@ def editProfile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, "Profile updated")
-            return redirect('editProfile')
+            return redirect('dashboard')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = UserProfileForm(instance=userprofile)
@@ -222,7 +222,7 @@ def editProfile(request):
     }
     return render(request, 'accounts/edit_profile.html', context)
     
-
+@login_required(login_url='login')
 def change_password(request):
     if request.method == 'POST':
         current_password = request.POST['currentpass']
@@ -231,18 +231,13 @@ def change_password(request):
     
         user = Account.objects.get(username__exact=request.user.username)
         if new_password == confirm_password:
-            if len(new_password) <=8:
-
                 success = user.check_password(current_password)
                 if success:
                     user.set_password(new_password)
                     user.save()
                     messages.success(request,"Password updated successfully")
                 else:
-                    messages.error(request, "Your currnet password doesn't match")
-            else:
-                messages.error(request, "Password must contain more than 8 characters")
+                    messages.error(request, "Incorrect current password ")
         else:
-            messages.error(request, "Your password doesn't match")
-
+            messages.error(request, "Password doesn't match")
     return render(request, 'accounts/change_password.html')
