@@ -2,6 +2,12 @@
   font-family: "Roboto";
   src: url(Roboto-Thin.ttf);
   font-weight: 200; }
+  
+@font-face {
+  font-family: "Poppins";
+  src: url(Poppins-Regular.ttf);
+  font-weight: 200; }
+
 @font-face {
   font-family: "Roboto";
   src: url(Roboto-Light.ttf);

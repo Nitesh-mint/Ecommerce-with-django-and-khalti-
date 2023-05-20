@@ -1,85 +1,93 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'includes/navbar.html' %}   
-<body style="font-weight: bold;">
+{% include 'includes/navbar.html' %}
+
+<body>
 	<!-- ========================= SECTION MAIN ========================= -->
-	<section class="section-intro padding-y-sm">
+	<section class="section-intro padding-y">
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
-			  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<img class="d-block w-100" src="{% static 'images/banners/1.jpg' %}" alt="First slide">
-			  </div>
-			  <div class="carousel-item">
-				<img class="d-block w-100" src="{% static 'images/banners/2.jpg' %}" alt="Second slide">
-			  </div>
-			  <div class="carousel-item">
-				<img class="d-block w-100" src="{% static 'images/banners/3.jpg' %}" alt="Third slide">
-			  </div>
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{% static 'images/banners/1.jpg' %}" alt="First slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'images/banners/2.jpg' %}" alt="Second slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'images/banners/3.jpg' %}" alt="Third slide">
+				</div>
 			</div>
-		  </div>
+		</div>
 	</section>
 	<!-- ========================= SECTION MAIN END// ========================= -->
 
 	<!-- ========================= SECTION  ========================= -->
-	<section class="section-name padding-y-sm">
-	<div class="container">
+	<section class="section-name padding-y">
+		<div class="container">
 
-	<header class="section-heading">
-		<a href="{% url 'store' %}" class="btn btn-outline-success float-right">See all</a>
-		<h3 class="section-title">Popular products</h3>
-	</header><!-- sect-heading -->
+			<header class="section-heading">
+				<a href="{% url 'store' %}" class="btn btn-outline-success float-right">See all</a>
+				<h3 class="section-title">Popular products</h3>
+			</header><!-- sect-heading -->
 
-		
-	<div class="row">
-		{% for product in products %}
-			<div class="col-md-3">
+
+			<div class="row">
+				{% for product in products %}
+
 				<a href="{{product.get_url}}">
-					<div class="card-body card-body-cascade fa-border">
-						<div class="card-body card-product-grid">
-							<!-- url chiancha so belwo .url is necessary as it will reutrn the link of the image not the actual image file -->
-							<div class="view view-cascade overlay">
-								<img class="card-img-top" src="{{ product.Image.url }}"
-								  alt="Card image cap">
-								<a>
-								  <div class="mask rgba-white-slight"></div>
-								</a>
-							</div>						
-							<!-- <a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a> -->
-							<figcaption class="info-wrap">
-								<p class="title">{{ product.product_name }}</p>
-								{% if product.averageRating %}
+					<div class="col-md-3">
+						<div class="card-body card-body-cascade fa-border">
+							<div class="card-body card-product-grid">
+								<!-- url chiancha so belwo .url is necessary as it will reutrn the link of the image not the actual image file -->
+								<div class="view view-cascade overlay">
+									<img class="card-img-top" src="{{ product.Image.url }}" alt="Card image cap">
+									<a>
+										<div class="mask rgba-white-slight"></div>
+									</a>
+								</div>
+								<!-- <a href="{{product.get_url}}" class="img-wrap"> <img src="{{ product.Image.url }}"></a> -->
+								<figcaption class="info-wrap">
+									<p class="title">{{ product.product_name }}</p>
+									{% if product.averageRating %}
 									<div class="rating-star">
 										<span>
-											<i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half {% endif %}" aria-hidden="true"></i>
-											<i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and  product.averageRating < 2 %}-half {% endif %}" aria-hidden="true"></i>
-											<i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and  product.averageRating < 3 %}-half {% endif %}" aria-hidden="true"></i>
-											<i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and  product.averageRating < 4 %}-half {% endif %}" aria-hidden="true"></i>
-											<i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half {% endif %}"
+												aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and  product.averageRating < 2 %}-half {% endif %}"
+												aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and  product.averageRating < 3 %}-half {% endif %}"
+												aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and  product.averageRating < 4 %}-half {% endif %}"
+												aria-hidden="true"></i>
+											<i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half {% endif %}"
+												aria-hidden="true"></i>
 										</span>
 										<span style="color:gray;">({{product.reveiewCount}})</span>
 									</div>
-								{% else %}
+									{% else %}
 									<p class="text-danger" style="font-size: 12px;">No ratings yet</p>
-								{% endif %}
-								<div class="price mt-1"><i class="fa fa-inr" aria-hidden="true"></i>
-									{{ product.price }}</div> <!-- price-wrap.// -->
-							</figcaption>
+									{% endif %}
+									<div class="price mt-1"><i class="fa fa-inr" aria-hidden="true"></i>
+										{{ product.price }}</div> <!-- price-wrap.// -->
+								</figcaption>
+							</div>
 						</div>
-					</div>
-				</a>
-			</div> <!-- col.// -->
-		{% endfor %}
-	</div> <!-- row.// -->
 
-	</div><!-- container // -->
+					</div> <!-- col.// -->
+				</a>
+				{% endfor %}
+			</div> <!-- row.// -->
+
+		</div><!-- container // -->
 	</section>
 	<!-- ========================= SECTION  END// ========================= -->
 </body>
+
 </html>
 {% endblock content %}

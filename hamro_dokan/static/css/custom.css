@@ -1,3 +1,7 @@
+
+*{
+    font-family: 'Poppins';
+}
 .rate > input{
     display: none;
 }

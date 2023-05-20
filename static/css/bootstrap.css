@@ -50,18 +50,40 @@ Bootstrap with custom variables
 }
 
 html {
-  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/* Nitesh raya added this  */
+#n{
+  background-color: #ffffff;
+}
 
+.navbar-nav .nav-link {
+  font-size: 19px;
+  padding: 12px 20px;
+}
+/* Navbar search bar */
+.navbar-nav .dropdown-toggle {
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+
+#golo{
+  border-radius: 90px;
+  padding: 15px;
+  border: none;
+}
+
+.container-fluid{
+  padding: 0px 0px;
+}
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
 body {
-  margin: 0;
+  margin-top: 120px;
   font-family: "Inter", Arial, "Helvetica Neue", "Segoe UI", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
@@ -547,6 +569,7 @@ pre code {
 
 .container {
   width: 100%;
+  /* padding-top: 100px; */
   padding-right: 10px;
   padding-left: 10px;
   margin-right: auto;
@@ -1885,7 +1908,7 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(1.5em + 0.9rem + 2px);
+  height: 50px;
   padding: 0.45rem 0.85rem;
   font-size: 1rem;
   font-weight: 400;
@@ -2440,13 +2463,19 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #00b517;
-  border-color: #00b517;
+  background: rgb(9,210,70);
+  background: -moz-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: -webkit-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#09d246",endColorstr="#19df86",GradientType=1);
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #008f12;
-  border-color: #008211;
+  background: rgb(55,136,87);
+background: -moz-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#378857",endColorstr="#03a85e",GradientType=1);
 }
 .btn-success:focus, .btn-success.focus {
   box-shadow: 0 0 0 0.2rem rgba(38, 192, 58, 0.5);
@@ -2732,13 +2761,19 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success {
-  color: #00b517;
-  border-color: #00b517;
+  background: rgb(9,210,70);
+  background: -moz-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: -webkit-linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  background: linear-gradient(90deg, rgba(9,210,70,1) 0%, rgba(25,223,134,1) 52%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#09d246",endColorstr="#19df86",GradientType=1);
 }
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #00b517;
-  border-color: #00b517;
+  background: rgb(55,136,87);
+background: -moz-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+background: linear-gradient(90deg, rgba(55,136,87,1) 0%, rgba(3,168,94,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#378857",endColorstr="#03a85e",GradientType=1);
 }
 .btn-outline-success:focus, .btn-outline-success.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 181, 23, 0.5);
@@ -3059,7 +3094,6 @@ input[type=button].btn-block {
   top: 100%;
   left: 0;
   z-index: 1000;
-  display: none;
   float: left;
   min-width: 10rem;
   padding: 0.5rem 0;
@@ -3072,6 +3106,12 @@ input[type=button].btn-block {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.37rem;
+  /* added for the smooth dropdown */
+  display: block;
+  visibility: hidden;
+  opacity:0;
+  transform: translateY(50px);
+  transition:.5s ease all;
 }
 
 .dropdown-menu-left {
@@ -3246,6 +3286,10 @@ input[type=button].btn-block {
 
 .dropdown-menu.show {
   display: block;
+  visibility: visible;
+  opacity:1;
+  transform: translateY(0px);
+  transition:.5s ease all;
 }
 
 .dropdown-header {
@@ -4168,7 +4212,7 @@ input[type=button].btn-block {
   .navbar-expand-lg > .container,
 .navbar-expand-lg > .container-fluid {
     padding-right: 0;
-    padding-left: 0;
+    /* padding-left: 0; */
   }
 }
 @media (min-width: 992px) {
@@ -4369,6 +4413,8 @@ input[type=button].btn-block {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
+  padding-top: 40px;
+  
 }
 
 .card-title {
