@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6r$n=7okv1^!v-t9%uej6-4(jx#g-d1tn)2++nu5xvwfctjzhg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.145.130','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.145.130','127.0.0.1','192.168.94.130']
 
 
 # Application definition
@@ -154,7 +154,7 @@ MESSAGE_TAGS = {
 
 EMAIL_BACKEND = 'anymail.backends.sendinblue.EmailBackend'
 ANYMAIL = {
-    "SENDINBLUE_API_KEY": "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",
+    "SENDINBLUE_API_KEY": "xsmtpsib-bcc76f13ffaa21631edfd4ef5911ec5370e52ebbee19c51c6b8037fc9e8fff1e-Bp0CdGMz9IDWOrEq",
     "SEND_DEFAULTS": {
         "tags": ["app"]
     },
