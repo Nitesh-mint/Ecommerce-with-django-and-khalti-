@@ -51,3 +51,7 @@ label:hover ~ input:checked ~ label{
     margin-bottom: 40px;
     /* margin-left: 240px; */
 }
+
+#khoya{
+    color: red;
+}
