@@ -33,7 +33,7 @@
 
 			<header class="section-heading">
 				<a href="{% url 'store' %}" class="btn btn-outline-success float-right">See all</a>
-				<h3 class="section-title">Popular products</h3>
+				<h3 class="section-title">All products</h3>
 			</header><!-- sect-heading -->
 
 
@@ -73,7 +73,7 @@
 									{% else %}
 									<p class="text-danger" style="font-size: 12px;">No ratings yet</p>
 									{% endif %}
-									<div class="price mt-1"><i class="fa fa-inr" aria-hidden="true"></i>
+									<div class="price mt-1">Rs.</i>
 										{{ product.price }}</div> <!-- price-wrap.// -->
 								</figcaption>
 							</div>

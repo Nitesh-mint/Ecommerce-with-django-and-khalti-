@@ -71,11 +71,7 @@ def payment(request):
             'order': order,
         })
     to_email = request.user.email
-    from_email = "Hamrodokan <noreply@hamrodokan.com>"
-    send_email = EmailMessage(mail_subject, message, to=[to_email],sender={
-        "name":"Hamrodokan",
-        "email": "noreply@hamrodokan.com"
-    })
+    send_email = EmailMessage(mail_subject, message, to=[to_email], from_email="Hamrodokan@ilam.com")
     send_email.content_subtype = 'html'
     send_email.send()
     print("Sent mail success")
