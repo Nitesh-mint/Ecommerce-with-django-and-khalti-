@@ -154,7 +154,7 @@ MESSAGE_TAGS = {
 
 EMAIL_BACKEND = 'anymail.backends.sendinblue.EmailBackend'
 ANYMAIL = {
-    "SENDINBLUE_API_KEY": "xsmtpsib-bcc76f13ffaa21631edfd4ef5911ec5370e52ebbee19c51c6b8037fc9e8fff1e-Bp0CdGMz9IDWOrEq",
+    "SENDINBLUE_API_KEY": "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",
     "SEND_DEFAULTS": {
         "tags": ["app"]
     },
