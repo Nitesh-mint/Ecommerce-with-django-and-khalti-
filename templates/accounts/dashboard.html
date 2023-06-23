@@ -12,10 +12,10 @@
             <img src="{% if userprofile.profile_picture %}{{userprofile.profile_picture.url}}{% endif %}"
             alt="Profile Picture" class="img-fluid rounded-circle border border-dark border-3" style="width: 70px;"><br>
             <strong class="d-inline-block">{{user.first_name}} {{user.last_name}}</strong><br>
-            <span class="badge badge-primary rounded-pill d-inline">{{user.email}}</span>
+            <span class="badge badge-success rounded-pill d-inline">{{user.email}}</span>
             <br>
             <a class="btn btn-outline-dark mt-3" href="{% url 'editProfile' %}"><i class="fa fa-pencil"
-                aria-hidden="true"></i></a>
+                aria-hidden="true"> Edit</i></a>
           </div>
           <div class="card-body text-center">
             <h5 class="card-title">Total Orders</h5>
