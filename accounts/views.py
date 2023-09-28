@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect , HttpResponse, get_object_or_404
 from . import forms
-from .forms import RegistrationForm, UserForm, UserProfileForm
-from .models import Account, UserProfile
+from .forms import RegistrationForm, UserForm, UserProfileForm, DeliveryForm
+from .models import Account, UserProfile, DeliveryAddress
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -241,3 +241,27 @@ def change_password(request):
         else:
             messages.error(request, "Password doesn't match")
     return render(request, 'accounts/change_password.html')
+
+
+def editDeliveryAddress(request):
+    if DeliveryAddress.objects.filter(user=request.user).exists():
+        if request.method == "POST":
+                print("Nice")
+                form = DeliveryForm(request.POST, instance=DeliveryAddress.objects.get(user=request.user))
+                form.save()
+                messages.success(request, "Address is updated")
+        else:
+            form = DeliveryForm(instance=request.user)
+    else:
+        if request.method == "POST":
+            form = DeliveryForm(request.POST)
+            if form.is_valid():
+                data = DeliveryAddress()
+                data.state = form.cleaned_data['state']
+                data.area = form.cleaned_data['area']
+                data.user = request.user
+                data.save()
+                messages.success(request, "Address has been stored succesfully")
+        else:
+            form = DeliveryForm()
+    return render(request, 'accounts/add_address.html', {'form':form})

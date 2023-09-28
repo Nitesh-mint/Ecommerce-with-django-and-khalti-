@@ -77,3 +77,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.first_name
     
+class DeliveryAddress(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
+    state = models.CharField(max_length=250, blank=True)
+    area = models.CharField(max_length=250, blank=True)
+
+    def __str__(self):
+        return self.user.first_name + " [" +  self.state + " " + self.area + "]"

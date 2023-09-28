@@ -1,19 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %} 
-    
+{% block content %}
+{% include 'includes/navbar.html' %}
+<body>
     <section class="section-content padding-y bg">
-        {% include 'includes/navbar.html' %}
         <div class="container">
             <!-- ============================ COMPONENT 1 ================================= -->
             <div class="card">
                 <div class="row no-gutters">
                     <aside class="col-md-5">
                         <article class="gallery-wrap">
-                            <div class="img-big-wrap">
+                            <div class="img-big-wrap mainImage">
                                 <img id="detailphoto" class="image-fluid" src="{{ single_product.Image.url }}">
                             </div> <!-- img-big-wrap.// -->
                         </article> <!-- gallery-wrap .end// -->
+                        <ul class="thumb">
+                            <li>
+                                <a href="{{ single_product.Image.url }}"><img id="detailphoto" class="image-fluid"
+                                        src="{{ single_product.Image.url }}"></a>
+                                {% for img in product_gallery %}
+                                <a href="{{ img.image.url }}" target="mainImage"><img src="{{ img.image.url }}"
+                                        alt="Product Image"></a>
+                                {% endfor %}
+                            </li>
+                        </ul>
                     </aside>
                     <main class="col-md-7">
                         <form action="{% url 'add_cart' single_product.id %}" method="POST">
@@ -51,7 +61,8 @@
                                         <select id="w-60" name="color" class="form-control" required>
                                             <option value="" disabled selected>Choose Color</option>
                                             {% for i in single_product.variation_set.color %}
-                                            <option class="" value="{{i.variation_value | lower}}">{{i.variation_value |capfirst }}</option>
+                                            <option class="" value="{{i.variation_value | lower}}">{{i.variation_value
+                                                |capfirst }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -59,7 +70,7 @@
                                     {% if single_product.variation_set.size %}
                                     <div class="item-option-select">
                                         <h6 class="ml-2">Select Size</h6>
-                                        <select  id="w-60" name="size" class="form-control" required>
+                                        <select id="w-60" name="size" class="form-control" required>
                                             <option value="" disabled selected>Choose Size</option>
                                             {% for i in single_product.variation_set.size %}
                                             <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
@@ -70,7 +81,7 @@
                                     {% if single_product.variation_set.ram %}
                                     <div class="item-option-select">
                                         <h6 class="ml-2">Select ram</h6>
-                                        <select  id="w-60" name="ram" class="form-control" required>
+                                        <select id="w-60" name="ram" class="form-control" required>
                                             <option value="" disabled selected>Choose ram</option>
                                             {% for i in single_product.variation_set.ram %}
                                             <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
@@ -81,7 +92,7 @@
                                     {% if single_product.variation_set.storage %}
                                     <div class="item-option-select">
                                         <h6 class="ml-2">Select storage</h6>
-                                        <select  id="w-60" name="storage" class="form-control" required>
+                                        <select id="w-60" name="storage" class="form-control" required>
                                             <option value="" disabled selected>Choose storage</option>
                                             {% for i in single_product.variation_set.storage %}
                                             <option vlaue="{{ i.varitation_value }}">{{ i.variation_value }}</option>
@@ -90,7 +101,8 @@
                                     </div>
                                     {% endif %}
                                     <br>
-                                    <button type="submit" class="btn btn-success p-3 mt-4 mb-3"> <span class="text ">Add to
+                                    <button type="submit" class="btn btn-success p-3 mt-4 mb-3"> <span class="text ">Add
+                                            to
                                             cart</span><i class="fa fa-shopping-cart"></i></button>
                                     {% endif %}
                             </article> <!-- product-info-aside .// -->
@@ -106,19 +118,21 @@
                         <ul class="nav center-items m-items">
                             <li class="nav-item active">
                                 <a class="nav-link text-dark" id="description-tab" data-toggle="pill"
-                                    href="#description"><h3>Description</h3></a>
+                                    href="#description">
+                                    <h3 class="btn btn-lg btn-outline-info">Description</h3>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" id="reviews-tab" data-toggle="pill" href="#reviews"><h3>Reviews</h3></a>
+                                <a class="nav-link text-dark" id="reviews-tab" data-toggle="pill" href="#reviews">
+                                    <h3 class="btn btn-lg btn-outline-dark">Reviews</h3>
+                                </a>
                             </li>
                         </ul>
                         <div class="tab-content mt-3">
                             <div id="description" class="tab-pane fade show active">
                                 <div class="container">
                                     <div class="col-md-12">
-                                        <center>
-                                            <p class="text-dark" style="font-size: 16px;">{{single_product.description}}</p>
-                                        </center>
+                                        <p class="text-dark" style="font-size: 16px;">{{single_product.description}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -153,12 +167,14 @@
                                             Review Title:
                                             <input type="text" class="form-control" name="subject" required>
                                             Review Message:
-                                            <textarea type="text" class="form-control" name="review" rows="4"></textarea>
+                                            <textarea type="text" class="form-control" name="review"
+                                                rows="4"></textarea>
                                             <br>
                                             {% if orderproduct %}
                                             <input type="submit" class="btn btn-success">
                                             {% else %}
-                                            <p class="text-danger" style="font-size: 20px;">You must purchase the product to
+                                            <p class="text-danger" style="font-size: 20px;">You must purchase the
+                                                product to
                                                 rate it.</p>
                                             {% endif %}
                                         </div>
@@ -167,7 +183,7 @@
                                     <a class="btn btn-primary p-3" href="{% url 'login' %}" style="font-size:19px;"><i
                                             class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                                     {% endif %}
-        
+
                                     <header class="section-heading">
                                         <h4>Customer Reviews</h4>
                                     </header>
@@ -178,7 +194,8 @@
                                             <img src="{{ review.user.userprofile.profile_picture.url }}" alt="pic"
                                                 class="img-xs icon rounded-circle">
                                             <div class="text">
-                                                <span class="date text-muted float-md-right">{{review.updated_at}}</span>
+                                                <span
+                                                    class="date text-muted float-md-right">{{review.updated_at}}</span>
                                                 <h6 class="mb-1 badge badge-dark rounded-pill d-inline">
                                                     {{review.user.first_name}}
                                                     {{review.user.last_name}}</h6>
@@ -212,52 +229,54 @@
                                     <p>No ratings for the products yet.</p>
                                     {% endif %}
                                 </div> <!-- col.// -->
-                            
+
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div> <!-- row.// -->
         </div> <!-- container .//  -->
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
-    <style>
-        ul>li {
-            margin-right: 25px;
-            font-weight: lighter;
-            cursor: pointer
-        }
+</body>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<style>
+    ul>li {
+        margin-right: 25px;
+        font-weight: lighter;
+        cursor: pointer
+    }
 
-        li.active {
-            border-bottom: 3px solid silver;
-        }
+    li.active {
+        border-bottom: 3px solid silver;
+    }
 
-        .m-items {
-            list-style-type: none;
-            font-size: 11px;
-            display: inline-flex;
-            margin-bottom: 0;
-        }
-        .center-items {
+    .m-items {
+        list-style-type: none;
+        font-size: 11px;
+        display: inline-flex;
+        margin-bottom: 0;
+    }
+
+    .center-items {
         display: flex;
         justify-content: center;
         align-items: center;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            //-- Click on detail
-            $("ul.m-items > li").on("click", function () {
-                $("ul.m-items > li").removeClass("active");
-                $(this).addClass("active");
-            })
-
-            $(".attr,.attr2").on("click", function () {
-                var clase = $(this).attr("class");
-
-                $("." + clase).removeClass("active");
-                $(this).addClass("active");
-            })
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        //-- Click on detail
+        $("ul.m-items > li").on("click", function () {
+            $("ul.m-items > li").removeClass("active");
+            $(this).addClass("active");
         })
-    </script>
+
+        $(".attr,.attr2").on("click", function () {
+            var clase = $(this).attr("class");
+
+            $("." + clase).removeClass("active");
+            $(this).addClass("active");
+        })
+    })
+</script>
 {% endblock content %}

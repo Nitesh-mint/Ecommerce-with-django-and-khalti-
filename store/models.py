@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db.models import Avg
 
 from accounts.models import Account
+from datetime import datetime, timedelta
 
 class Product(models.Model):
     product_name = models.CharField(max_length=100)
@@ -38,6 +39,29 @@ class Product(models.Model):
         for review in reviews:
             i = i+1
         return i
+
+
+class OfferProducts(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.IntegerField(blank=True)
+    is_active = models.BooleanField(blank=True, default=True)
+    start_date = models.DateTimeField(auto_now_add=True, blank=True)
+    end_date = models.DateTimeField(blank=True)
+
+    def save(self, *args, **kwargs):
+        today = datetime.today()
+        self.end_date = today + timedelta(days=1)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.product.product_name
+    
+    def price_after_discount(self):
+        return self.product.price - self.price
+    
+    def discount_percent(self):
+        return round((self.price * 100)/ self.product.price)
+    
 
 variation_category_choices = (
     ('color', 'color'),
@@ -84,3 +108,19 @@ class ReviewRating(models.Model):
 
     def __str__(self):
         return self.subject
+    
+
+
+class ProductGallery(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE) 
+    image  = models.ImageField(upload_to='store/products', max_length=255)
+
+
+    def __str__(self):
+        return self.product.product_name
+    
+
+    class Meta:
+        verbose_name = 'productgallery'
+        verbose_name_plural = 'product gallery'
+ 

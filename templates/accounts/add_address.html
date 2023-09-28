@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <div class="container mb-5">
+        <h4>Edit your Address</h4>
+        {% include 'includes/alerts.html' %}
+        <form method="POST" action="{% url 'editAddresss' %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Save" class="form-control">
+        </form>
+    </div>
+{% endblock content %}

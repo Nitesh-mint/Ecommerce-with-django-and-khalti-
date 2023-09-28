@@ -1,5 +1,5 @@
 from django import forms
-from .models import Account, UserProfile
+from .models import Account, UserProfile, DeliveryAddress
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={ #attrs in for the css class
@@ -66,3 +66,16 @@ class UserProfileForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
     
+
+class DeliveryForm(forms.ModelForm):
+    state = forms.CharField(widget=forms.TextInput(attrs={ #attrs in for the css class
+        'placeholder': "",
+        'class': 'form-control'
+    }))
+    area = forms.CharField(widget=forms.TextInput(attrs={ #attrs in for the css class
+        'placeholder': "",
+        'class': 'form-control'
+    }))
+    class Meta:
+        model = DeliveryAddress
+        fields = ['state','area']

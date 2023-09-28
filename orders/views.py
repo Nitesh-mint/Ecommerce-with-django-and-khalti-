@@ -19,7 +19,6 @@ from django.contrib.auth.decorators import login_required
 
 def payment(request):
     body = json.loads(request.body)
-    print(body)
     # getting the order object
     order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
 
