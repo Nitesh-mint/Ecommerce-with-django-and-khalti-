@@ -20,6 +20,9 @@ from django.conf import settings
 
 from .views import home
 
+admin.site.site_header = 'Hamro Dokan'
+admin.site.index_title = 'Dashboard'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home, name="home"),
