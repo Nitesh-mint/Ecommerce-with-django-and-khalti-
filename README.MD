@@ -1,23 +1,37 @@
 # Ecommerce with django and Khalti Payment
 
 # Setup - Virutal Environment
-<li><b>Fork</b> this repo or download <b>zip</b>, open termial inside the project folder and follow:</li>
+Fork this repo or download zip, open termial inside the project folder and follow:
 
-```
+```bash
 python -m venv .venv
-source .venv/bin/activate (f)
+source .venv/bin/activate
 ```
-<li>Install requirements:</li>
+Install requirements:
 
-`
+```bash
 python -m pip install -r requirements.txt 
-`
+```
 
-<li>Run the server</li>
+Run the server
 
-`python manage.py runserver`
+```bash
+python manage.py runserver
+```
 
 # Setup DOCKER
 `docker-compose up -d --build`
+
+
+### Screenshot
+![Home](screenshots/ecom_home_page.png)
+![Login](screenshots/ecom_login.png)
+![Categories](screenshots/ecom_categories.png)
+![Product](screenshots/ecom_product.png)
+![Profile](screenshots/ecom_profile.png)
+![Cart](screenshots/ecom_cart.png)
+![Ship Detail](screenshots/ecom_ship_detail.png)
+![Payment](screenshots/ecom_payment.png)
+
 
 
